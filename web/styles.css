@@ -1,0 +1,926 @@
+:root {
+    --primary-color: #78A6C8;    /* 柔和的天藍色 */
+    --secondary-color: #E8DDB5;  /* 溫暖的米色 */
+    --success-color: #B5D6D6;    /* 柔和的薄荷色 */
+    --background-color: #F6F6F6; /* 淡灰色背景 */
+    --card-background: #ffffff;
+    --text-primary: #2D4356;     /* 深藍灰色文字 */
+    --text-secondary: #8B9EB0;   /* 柔和的灰藍色 */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 4px 20px rgba(0, 0, 0, 0.12);
+    --border-radius: 12px;
+    --gradient-bg: linear-gradient(135deg, #F8F9FD 0%, #F1F4F9 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    height: 100vh;  /* 設置為視窗高度 */
+    overflow: hidden;  /* 防止滾動 */
+}
+
+.background-design {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-bg);
+    z-index: -1;
+}
+
+.background-design::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 20%, rgba(67, 97, 238, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(76, 201, 240, 0.05) 0%, transparent 50%);
+}
+
+.container {
+    max-width: 100%;  /* 改為全寬 */
+    margin: 0;
+    padding: 20px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+header {
+    text-align: center;
+    padding: 15px 0;
+    margin-bottom: 15px;
+    flex-shrink: 0;
+}
+
+.logo {
+    font-size: 2.5rem;  /* 稍微縮小 logo */
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo i {
+    animation: pulse 2s infinite;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+h1 {
+    font-size: 2rem;  /* 稍微縮小標題 */
+    color: var(--text-primary);
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1rem;  /* 縮小副標題 */
+    margin-top: 5px;
+    letter-spacing: 1px;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    position: relative; /* 添加相對定位 */
+    overflow: hidden; /* 防止內容溢出 */
+}
+
+.content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 140px);
+    padding: 40px;  /* 添加統一的內邊距 */
+    position: relative;
+}
+
+.camera-section {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--card-background);
+    padding: 25px;
+    border-radius: 30px;
+    box-shadow: var(--shadow-lg);
+    width: calc(100vw - 600px);
+    height: calc(100vh - 300px);
+    margin: 40px 300px 40px 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.control-section {
+    position: fixed;
+    right: 40px;
+    bottom: 20px;
+    width: 230px;
+    padding: 15px;
+    z-index: 100;
+}
+
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn {
+    background-color: var(--card-background);
+    color: var(--text-primary);  /* 更深的文字顏色 */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 12px 20px;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.btn:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn.active {
+    background-color: var(--primary-color);
+    color: white;  /* 選中時使用白色文字 */
+    border-color: var(--primary-color);
+}
+
+/* 特別為經絡學習按鈕設置樣式 */
+.meridian-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.meridian-btn:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: var(--text-primary);
+}
+
+.options-menu {
+    position: fixed;
+    right: 155px;
+    top: 50%;
+    transform: translate(50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-height: 90vh;
+    overflow-y: auto;
+    z-index: 1000;
+    width: 230px;
+}
+
+.camera-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#video {
+    width: 100%;
+    height: 100%;
+    transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    object-fit: cover; /* 使用 cover 以填滿容器 */
+}
+
+#output-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    object-fit: cover;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* iOS 特定樣式 */
+@supports (-webkit-touch-callout: none) {
+    .camera-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    #video, #output-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+/* 確保提示和穴位名稱顯示在最上層 */
+.center-guide, 
+.acupoint-title, 
+.palm-guide,
+.timer,
+.massage-complete {
+    z-index: 3;  /* 確保這些元素在最上層 */
+}
+
+/* 調整穴位提示的樣式 */
+.acupoint-title {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(43, 45, 66, 0.9);
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.3s ease;
+    display: none;
+    text-align: center;
+    pointer-events: none;
+}
+
+/* 調整手掌提示的樣式 */
+.palm-guide {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(43, 45, 66, 0.9);
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.3s ease;
+    display: none;
+    text-align: center;
+    pointer-events: none;
+}
+
+.error-message {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e0e0e0;
+    color: #ff0000;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 20px;
+}
+
+.camera-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.symptom-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.symptom-btn:hover {
+    background-color: var(--secondary-color);  /* 懸停時使用次要顏色 */
+    border-color: var(--secondary-color);
+    color: var(--text-primary);  /* 懸停時使用深色文字 */
+}
+
+.options-container {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+
+.options-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--primary-color);
+    text-align: center;
+}
+
+.option-btn {
+    width: 100%;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius);
+    background-color: var(--card-background);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.option-btn:hover {
+    background-color: var(--secondary-color);
+    color: var(--text-primary);
+    transform: translateX(5px);
+}
+
+.option-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+@media (max-width: 1600px) {
+    .content-wrapper {
+        padding: 25px;  /* 縮小留白 */
+    }
+    .camera-section {
+        padding: 20px;
+        width: calc(100vw - 500px);
+        height: calc(100vh - 280px);
+        margin: 35px 300px 35px 40px;
+    }
+    .camera-container {
+        transform: scale(1);
+        max-height: calc(100% - 40px);
+    }
+}
+
+@media (max-width: 1400px) {
+    .content-wrapper {
+        padding: 20px;
+    }
+    .camera-section {
+        padding: 15px;
+        width: calc(100vw - 400px);
+        height: calc(100vh - 260px);
+        margin: 30px 300px 30px 40px;
+    }
+    .camera-container {
+        transform: scale(0.9);
+        max-height: calc(100% - 30px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        overflow-y: auto;
+        background: var(--background-color);
+    }
+
+    .camera-section {
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+        box-shadow: none;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .camera-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    #video {
+        width: auto;
+        height: 100%;
+        max-width: 100%;
+        object-fit: cover;
+        transform: scaleX(-1);
+    }
+
+    #output-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scaleX(-1);
+        z-index: 2;
+    }
+
+    /* 確保 MediaPipe 輸出不會變形 */
+    .output_canvas {
+        width: auto !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        object-fit: cover !important;
+    }
+
+    /* 調整提示文字樣式 */
+    .acupoint-title,
+    .palm-guide,
+    .timer,
+    .massage-complete {
+        position: fixed; /* 改為固定定位 */
+        z-index: 1001;
+        pointer-events: none; /* 防止干擾點擊事件 */
+    }
+
+    .acupoint-title {
+        top: env(safe-area-inset-top, 40px);
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        max-width: 90%;
+        background: rgba(43, 45, 66, 0.9);
+        padding: 12px 24px;
+        border-radius: var(--border-radius);
+        backdrop-filter: blur(8px);
+    }
+
+    .palm-guide {
+        top: calc(env(safe-area-inset-top, 40px) + 60px);
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        max-width: 90%;
+        background: rgba(43, 45, 66, 0.9);
+        padding: 12px 24px;
+        border-radius: var(--border-radius);
+        backdrop-filter: blur(8px);
+    }
+
+    .control-section {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+    }
+
+    .options-menu {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 80px;
+        transform: none;
+        width: 100%;
+        max-height: 40vh;
+        border-radius: 20px 20px 0 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 999;
+        overflow-y: auto;
+    }
+
+    .btn-group {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 10px;
+        width: 100%;
+        max-width: 400px;
+        padding: 0 20px;
+    }
+
+    .btn {
+        flex: 1;
+        max-width: 150px;
+        height: 45px;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        background: var(--primary-color);
+        color: white;
+    }
+
+    .symptom-list {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .symptom-list .option-btn {
+        width: 100%;
+        min-width: 0;
+        max-width: none;
+    }
+
+    #meridian-options {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 100%;
+        padding: 15px;
+    }
+}
+
+/* iOS 特定樣式 */
+@supports (-webkit-touch-callout: none) {
+    @media screen and (max-width: 768px) {
+        .camera-container {
+            height: 100%;
+        }
+
+        #video, #output-canvas {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+}
+
+.hand-selection {
+    display: none;
+    margin: 10px 0;
+}
+
+.hand-choice {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 15px 0 25px 0;
+}
+
+.hand-btn {
+    padding: 12px 30px;
+    border: 2px solid var(--primary-color);
+    background-color: transparent;
+    color: var(--primary-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    min-width: 90px;
+    text-align: center;
+}
+
+.hand-btn:hover, .hand-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(43, 45, 66, 0.9);
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.3s ease;
+    font-size: 1rem;
+    z-index: 2000;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.symptom-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);  /* 改為兩列排列 */
+    gap: 10px;  /* 按鈕之間的間距 */
+    padding: 10px;
+    width: 100%;
+    max-width: 300px;  /* 限制最大寬度 */
+    margin: 0 auto;  /* 置中對齊 */
+}
+
+.center-guide, .acupoint-title, .palm-guide {
+    font-size: 1rem;
+    padding: 8px 16px;
+}
+
+.center-guide {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(43, 45, 66, 0.9);
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.3s ease;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    pointer-events: none;  /* 讓提示文字不影響點擊事件 */
+}
+
+.timer, .massage-complete {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--border-radius);
+    font-weight: 700;
+    box-shadow: var(--shadow-sm);
+    animation: fadeIn 0.3s ease;
+    display: none;
+    z-index: 2000;
+}
+
+#symptom-options, #meridian-options {
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+#symptom-options::-webkit-scrollbar,
+#meridian-options::-webkit-scrollbar {
+    width: 6px;
+}
+
+#symptom-options::-webkit-scrollbar-thumb,
+#meridian-options::-webkit-scrollbar-thumb {
+    background-color: var(--text-secondary);
+    border-radius: 3px;
+}
+
+/* 修改經絡選單的樣式 */
+#meridian-options {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+    padding: 15px;
+    width: 100%;
+    max-width: 230px;  /* 與控制按鈕相同的寬度 */
+    margin: 0 auto;
+}
+
+/* 修改經絡按鈕的樣式 */
+#meridian-options .option-btn {
+    width: 100%;      /* 佔滿容器寬度 */
+    min-width: auto;  /* 移除最小寬度限制 */
+    max-width: none;  /* 移除最大寬度限制 */
+    padding: 10px 15px;
+    margin: 2px 0;
+    font-size: 14px;
+    white-space: normal;  /* 允許文字換行 */
+    border-radius: 10px;
+    text-align: left;    /* 文字靠左對齊 */
+}
+
+/* 調整經絡選單標題樣式 */
+#meridian-options .options-title {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+}
+
+/* 調整滾動條樣式 */
+.options-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.options-menu::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+/* 修改症狀列表的樣式 */
+.symptom-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);  /* 改為兩列排列 */
+    gap: 10px;  /* 按鈕之間的間距 */
+    padding: 10px;
+    width: 100%;
+    max-width: 300px;  /* 限制最大寬度 */
+    margin: 0 auto;  /* 置中對齊 */
+}
+
+/* 修改症狀按鈕的樣式 */
+.symptom-list .option-btn {
+    width: auto;  /* 自動寬度 */
+    min-width: 100px;  /* 最小寬度 */
+    max-width: 120px;  /* 最大寬度 */
+    padding: 8px 15px;  /* 調整內邊距 */
+    margin: 5px;  /* 調整外邊距 */
+    font-size: 14px;  /* 調整字體大小 */
+    white-space: nowrap;  /* 防止文字換行 */
+    border-radius: 20px;  /* 圓角 */
+}
+
+/* 調整手部選擇按鈕的佈局 */
+.hand-choice {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+/* 調整標題樣式 */
+.options-title {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: 500;
+}
+
+/* 添加媒體查詢，針對手機設備 */
+@media screen and (max-width: 768px) {
+    .camera-section {
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .control-section {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .btn-group {
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .btn {
+        flex: 1;
+        padding: 12px;
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .options-menu {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 80px;
+        top: auto;
+        transform: none;
+        width: 100%;
+        max-height: 60vh;
+        border-radius: 20px 20px 0 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+    }
+
+    .symptom-list {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .symptom-list .option-btn {
+        width: 100%;
+        min-width: 0;
+        max-width: none;
+    }
+
+    #meridian-options {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .acupoint-title {
+        top: 40px;
+    }
+
+    .palm-guide {
+        top: 100px;
+    }
+
+    .timer, .massage-complete {
+        top: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/* 針對更小螢幕的設備 */
+@media screen and (max-width: 480px) {
+    .symptom-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #meridian-options {
+        grid-template-columns: 1fr;
+    }
+
+    .btn {
+        font-size: 12px;
+        padding: 10px;
+    }
+}
+
+/* 處理 iOS 安全區域 */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    @media screen and (max-width: 768px) {
+        .control-section {
+            padding-bottom: calc(15px + env(safe-area-inset-bottom));
+        }
+
+        .options-menu {
+            padding-bottom: calc(15px + env(safe-area-inset-bottom));
+        }
+    }
+} 
