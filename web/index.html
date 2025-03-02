@@ -78,7 +78,7 @@
                     <div class="options-title">症狀選擇</div>
                     <button class="option-btn">疲勞</button>
                     <button class="option-btn">頭痛</button>
-                    <button class="option-btn">頭暈</button>
+                    <!-- <button class="option-btn">頭暈</button> -->
                     <button class="option-btn" data-acupoint="魚際穴" data-location="yujixue">哮喘</button>
                     <button class="option-btn">經痛</button>
                     <button class="option-btn">牙齒痛</button>
@@ -106,9 +106,9 @@
 
         // 設定 canvas 尺寸
         function setupCanvas() {
-            // 使用與視訊相同的解析度
-            canvas.width = 1280;
-            canvas.height = 720;
+            // 使用 9:16 的比例（手機直向）
+            canvas.width = 720;
+            canvas.height = 1280; // 直向比例
         }
 
         // 初始化 MediaPipe Hands
@@ -678,10 +678,6 @@
                 //                     }
                 //                 }
                 //             }
-                //         } else {
-                //             // 手背朝向錯誤時同時隱藏穴位和文字
-                //             palmNotification.style.display = 'block';
-                //             acupointName.style.display = 'none';
                 //         }
                 //     }
                 // }
@@ -870,8 +866,8 @@
                     onFrame: async () => {
                         await hands.send({image: video});
                     },
-                    width: 1280,
-                    height: 720
+                    width: 720,
+                    height: 1280 // 直向比例
                 });
 
                 await camera.start();
