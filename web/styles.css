@@ -429,7 +429,7 @@ footer {
 
 /* ===== 手機版面配置 ===== */
 @media screen and (max-width: 768px) {
-    /* 主容器設置 */
+    /* 主容器 */
     .container {
         width: 100%;
         min-height: 100vh;
@@ -439,14 +439,14 @@ footer {
         padding: 0;
     }
 
-    /* 標題區域設置 */
+    /* 標題區域 */
     header {
         width: 100%;
         text-align: center;
         padding: 20px 0;
     }
 
-    /* 主標題樣式 */
+    /* 主標題 */
     h1 {
         font-size: 24px;
         margin-bottom: 5px;
@@ -454,26 +454,27 @@ footer {
         font-weight: 700;
     }
 
-    /* 副標題樣式 */
+    /* 副標題 */
     .subtitle {
         font-size: 16px;
         color: var(--text-secondary);
         margin-bottom: 20px;
     }
 
-    /* 按鈕組設置 */
+    /* 按鈕組（修正水平排列） */
     .btn-group {
         width: 100%;
         display: flex;
-        flex-direction: row;   /* 改為水平排列 */
-        justify-content: center; /* 按鈕置中對齊 */
-        gap: 20px;              /* 保持按鈕之間的間距 */
-        margin-bottom: 30px;    /* 與相機區域的間距 */
+        flex-direction: row;  /* 讓按鈕水平排列 */
+        justify-content: center;
+        flex-wrap: wrap;  /* 讓按鈕可換行，避免小螢幕擠壓變形 */
+        gap: 15px;  /* 按鈕間距 */
+        margin-bottom: 30px;
     }
 
-    /* 按鈕基本樣式 */
+    /* 按鈕樣式 */
     .btn {
-        width: 160px;
+        width: 140px;  /* 按鈕固定大小 */
         padding: 12px 0;
         border-radius: 8px;
         font-size: 16px;
@@ -489,7 +490,7 @@ footer {
         background: var(--primary-dark);
     }
 
-    /* 相機區域設置 */
+    /* 相機區域 */
     .camera-section {
         width: 100%;
         display: flex;
@@ -498,18 +499,18 @@ footer {
         padding: 0;
     }
 
-    /* 相機容器設置 */
+    /* 相機容器修正 */
     .camera-container {
-        width: 90%;           /* 適應不同裝置 */
+        width: 90%;  /* 讓相機畫面自適應 */
         max-width: 500px;
-        aspect-ratio: 4/3;    /* 根據不同裝置調整比例 */
+        aspect-ratio: 4/3;  /* 防止過度狹長 */
         position: relative;
         border-radius: 10px;
         overflow: hidden;
         background: black;
     }
 
-    /* 視訊和畫布元素設置 */
+    /* 視訊和畫布元素 */
     #video, #output-canvas {
         width: 100%;
         height: 100%;
