@@ -435,15 +435,16 @@ footer {
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        padding: 10px;
-        gap: 20px; /* 增加元素間距 */
+        padding: 0; /* 移除內邊距 */
+        background: white;
     }
 
     /* 標題區域設置 */
     header {
         width: 100%;
         text-align: center;
-        padding: 10px 0;
+        padding: 20px 0;
+        background: white;
     }
 
     h1 {
@@ -459,12 +460,13 @@ footer {
     /* 相機區域設置 */
     .camera-section {
         width: 100%;
-        height: 65vh; /* 調整高度佔比 */
+        height: 75vh; /* 增加高度比例 */
         position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 0;
+        background: #000; /* 黑色背景 */
         overflow: hidden;
     }
 
@@ -473,7 +475,6 @@ footer {
         width: 100%;
         height: 100%;
         position: relative;
-        background: #000; /* 添加黑色背景 */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -483,7 +484,7 @@ footer {
     #video, #output-canvas {
         width: 100%;
         height: 100%;
-        object-fit: contain; /* 保持比例 */
+        object-fit: cover; /* 使用 cover 填滿容器 */
         position: absolute;
         top: 50%;
         left: 50%;
@@ -492,52 +493,53 @@ footer {
 
     /* 按鈕區域設置 */
     .btn-group {
+        position: fixed; /* 固定定位 */
+        bottom: 20px; /* 距離底部距離 */
         width: 100%;
         display: flex;
-        justify-content: center;
-        gap: 15px;
-        padding: 10px;
-        position: relative; /* 確保不會與相機區域重疊 */
-        z-index: 1;
-        margin-top: 10px; /* 與相機區域保持距離 */
+        justify-content: space-between; /* 兩端對齊 */
+        padding: 0 20px; /* 左右留白 */
+        z-index: 10;
     }
 
     /* 按鈕樣式 */
     .btn {
-        flex: 1;
-        max-width: 160px;
-        padding: 12px 20px;
+        width: 45%; /* 設置按鈕寬度 */
+        max-width: none; /* 移除最大寬度限制 */
+        padding: 15px 0;
         border-radius: 10px;
         font-size: 16px;
         text-align: center;
         background: var(--primary-color);
         color: white;
         border: none;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
     /* 選單設置 */
     .options-menu {
+        position: fixed;
+        bottom: 0;
+        left: 0;
         width: 100%;
         background: white;
-        border-radius: 15px;
-        padding: 15px;
-        margin-top: 10px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        position: relative;
-        z-index: 2;
+        border-radius: 20px 20px 0 0;
+        padding: 20px;
+        z-index: 100;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+    }
+
+    .options-menu.active {
+        transform: translateY(0);
     }
 }
 
 /* iOS 特定優化 */
 @supports (-webkit-touch-callout: none) {
     @media screen and (max-width: 768px) {
-        .camera-container {
-            aspect-ratio: auto; /* 移除固定比例 */
-        }
-
-        .container {
-            padding-bottom: env(safe-area-inset-bottom);
+        .btn-group {
+            padding-bottom: calc(20px + env(safe-area-inset-bottom));
         }
     }
 }
