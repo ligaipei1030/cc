@@ -862,10 +862,10 @@
         async function startCamera() {
             try {
                 // iOS 必要屬性設置
-                video.setAttribute('playsinline', '');      // 防止全屏播放
-                video.setAttribute('webkit-playsinline', ''); // Safari 支援
-                video.setAttribute('autoplay', '');         // 自動播放
-                video.setAttribute('muted', '');            // 靜音播放
+                video.setAttribute('playsinline', '');
+                video.setAttribute('webkit-playsinline', '');
+                video.setAttribute('autoplay', '');
+                video.setAttribute('muted', '');
 
                 // 檢測是否為 iOS 設備
                 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
@@ -873,31 +873,35 @@
                 // 根據設備設置最佳解析度和比例
                 const constraints = {
                     video: {
-                        facingMode: 'user',                  // 使用前置攝像頭
-                        width: { ideal: isIOS ? 720 : 1280 },  // iOS 使用較小解析度
-                        height: { ideal: isIOS ? 1280 : 720 }, // iOS 使用直向比例
-                        frameRate: { ideal: 30 },           // 設置幀率
-                        aspectRatio: { ideal: isIOS ? 9/16 : 16/9 } // iOS 使用直向比例
+                        facingMode: 'user',
+                        width: { ideal: isIOS ? 720 : 1280 },
+                        height: { ideal: isIOS ? 1280 : 720 },
+                        frameRate: { ideal: 30 },
+                        aspectRatio: { ideal: isIOS ? 9/16 : 16/9 }
                     }
                 };
 
-                // 獲取視訊流
-                const stream = await navigator.mediaDevices.getUserMedia(constraints);
-                video.srcObject = stream;
+                // 檢查是否已經有相機權限
+                if (!video.srcObject) {
+                    const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                    video.srcObject = stream;
+                }
 
                 // 初始化 canvas
                 setupCanvas();
                 
                 // 初始化相機
-                const camera = new Camera(video, {
-                    onFrame: async () => {
-                        await hands.send({image: video});
-                    },
-                    width: isIOS ? 720 : 1280,
-                    height: isIOS ? 1280 : 720
-                });
-
-                await camera.start();
+                if (!window.cameraInitialized) {
+                    const camera = new Camera(video, {
+                        onFrame: async () => {
+                            await hands.send({image: video});
+                        },
+                        width: isIOS ? 720 : 1280,
+                        height: isIOS ? 1280 : 720
+                    });
+                    await camera.start();
+                    window.cameraInitialized = true;
+                }
 
             } catch (err) {
                 console.error('相機初始化錯誤:', err);
