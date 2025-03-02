@@ -443,7 +443,19 @@ footer {
     header {
         width: 100%;               /* 標題區域佔滿寬度 */
         text-align: center;        /* 文字置中 */
-        padding: 20px 0;           /* 上下內邊距 */
+        padding: 20px 20px 10px;   /* 上、左右、下內邊距 */
+    }
+
+    h1 {
+        font-size: 24px;           /* 標題字體大小 */
+        margin-bottom: 5px;        /* 底部間距 */
+        color: var(--text-primary); /* 文字顏色 */
+    }
+
+    .subtitle {
+        font-size: 16px;           /* 副標題字體大小 */
+        color: var(--text-secondary); /* 次要文字顏色 */
+        margin-bottom: 15px;       /* 底部間距 */
     }
 
     /* 按鈕組設置 */
@@ -451,15 +463,16 @@ footer {
         width: 100%;              /* 按鈕組佔滿寬度 */
         display: flex;            /* 使用 flex 布局 */
         justify-content: center;  /* 水平置中 */
-        gap: 20px;               /* 按鈕之間的間距 */
-        padding: 10px 20px;      /* 上下左右內邊距 */
+        gap: 15px;               /* 按鈕之間的間距 */
+        padding: 0 20px;         /* 左右內邊距 */
+        margin-bottom: 20px;     /* 底部間距 */
     }
 
     /* 按鈕基本樣式 */
     .btn {
-        width: 45%;              /* 設置按鈕寬度 */
-        padding: 15px 0;         /* 上下內邊距 */
-        border-radius: 10px;     /* 圓角效果 */
+        width: 160px;            /* 固定按鈕寬度 */
+        padding: 12px 0;         /* 上下內邊距 */
+        border-radius: 8px;      /* 圓角效果 */
         font-size: 16px;         /* 字體大小 */
         text-align: center;      /* 文字置中 */
         background: var(--primary-color);  /* 使用主題色 */
@@ -471,22 +484,23 @@ footer {
     /* 相機區域設置 */
     .camera-section {
         width: 100%;            /* 佔滿寬度 */
-        aspect-ratio: 16/9;     /* 設置 16:9 的比例 */
+        padding: 0 20px;        /* 左右內邊距 */
         position: relative;     /* 相對定位 */
         display: flex;          /* 使用 flex 布局 */
         justify-content: center;/* 水平置中 */
         align-items: center;    /* 垂直置中 */
-        margin: 20px 0;        /* 上下間距 */
-        border: 2px solid #4CAF50;  /* 綠色邊框 */
-        border-radius: 10px;    /* 圓角效果 */
-        overflow: hidden;       /* 隱藏溢出內容 */
+        flex: 1;               /* 佔據剩餘空間 */
     }
 
     /* 相機容器設置 */
     .camera-container {
         width: 100%;           /* 佔滿寬度 */
-        height: 100%;          /* 佔滿高度 */
+        max-width: 500px;      /* 最大寬度限制 */
+        aspect-ratio: 9/16;    /* 保持手機直向比例 */
         position: relative;    /* 相對定位 */
+        border: 2px solid #4CAF50;  /* 綠色邊框 */
+        border-radius: 10px;   /* 圓角效果 */
+        overflow: hidden;      /* 隱藏溢出內容 */
     }
 
     /* 視訊和畫布元素設置 */
