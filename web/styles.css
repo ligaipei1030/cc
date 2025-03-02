@@ -436,7 +436,7 @@ footer {
         display: flex;              /* 使用 flex 布局 */
         flex-direction: column;     /* 垂直排列子元素 */
         padding: 0;                 /* 移除內邊距 */
-        background: white;          /* 白色背景 */
+        /* background: white;          白色背景 */
     }
 
     /* 標題區域設置 */
