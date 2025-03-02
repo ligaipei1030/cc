@@ -436,7 +436,7 @@ footer {
         display: flex;              /* 使用 flex 布局 */
         flex-direction: column;     /* 垂直排列子元素 */
         padding: 0;                 /* 移除內邊距 */
-        background: white;          /* 設置白色背景 */
+        overflow: hidden;           /* 防止內容溢出 */
     }
 
     /* 標題區域設置 */
@@ -444,30 +444,44 @@ footer {
         width: 100%;               /* 標題區域佔滿寬度 */
         text-align: center;        /* 文字置中 */
         padding: 20px 0;           /* 上下內邊距 */
-        background: white;         /* 白色背景 */
     }
 
     /* 按鈕組設置 */
     .btn-group {
         width: 100%;              /* 按鈕組佔滿寬度 */
         display: flex;            /* 使用 flex 布局 */
+        flex-direction: row;      /* 水平排列按鈕 */
         justify-content: center;  /* 水平置中 */
         gap: 20px;               /* 按鈕之間的間距 */
         padding: 10px 20px;      /* 上下左右內邊距 */
-        background: white;        /* 白色背景 */
+    }
+
+    /* 按鈕基本樣式 */
+    .btn {
+        flex: 1;                 /* 平均分配寬度 */
+        max-width: 160px;        /* 限制最大寬度 */
+        padding: 12px 0;         /* 上下內邊距 */
+        border-radius: 25px;     /* 圓角效果 */
+        font-size: 16px;         /* 字體大小 */
+        text-align: center;      /* 文字置中 */
+        background: var(--primary-color);  /* 使用主題色 */
+        color: white;            /* 白色文字 */
+        border: none;            /* 移除邊框 */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);  /* 陰影效果 */
+        cursor: pointer;         /* 滑鼠指針樣式 */
+        transition: background-color 0.3s ease;  /* 只對背景色添加過渡效果 */
     }
 
     /* 相機區域設置 */
     .camera-section {
         width: 100%;            /* 佔滿寬度 */
-        height: 100%;           /* 佔滿高度 */
+        height: calc(100vh - 200px); /* 減去標題和按鈕的高度 */
         position: relative;     /* 相對定位 */
         display: flex;          /* 使用 flex 布局 */
         justify-content: center;/* 水平置中 */
         align-items: center;    /* 垂直置中 */
         background: black;      /* 黑色背景 */
         overflow: hidden;       /* 隱藏溢出內容 */
-        aspect-ratio: 9/16;    /* 設置長寬比為 9:16 */
     }
 
     /* 相機容器設置 */
@@ -483,8 +497,9 @@ footer {
         height: 100%;         /* 佔滿高度 */
         object-fit: cover;    /* 填滿容器 */
         position: absolute;   /* 絕對定位 */
-        top: 0;              /* 貼齊頂部 */
-        left: 0;             /* 貼齊左側 */
+        top: 50%;            /* 垂直置中 */
+        left: 50%;           /* 水平置中 */
+        transform: translate(-50%, -50%) scaleX(-1);  /* 位移和水平翻轉 */
     }
 }
 
