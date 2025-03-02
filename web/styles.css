@@ -124,11 +124,10 @@ main {
 .camera-section {
     width: 100%;
     height: 100vh;
-    margin: 0;
-    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
     background: var(--background-color);
 }
 
@@ -218,25 +217,20 @@ main {
 }
 
 #video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scaleX(-1);
-    width: auto;
+    width: 100%;
     height: 100%;
-    max-width: none;
-    object-fit: cover;
+    object-fit: contain;
+    transform: scaleX(-1);
 }
 
 #output-canvas {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scaleX(-1);
-    width: auto;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-    max-width: none;
-    object-fit: cover;
+    object-fit: contain;
+    transform: scaleX(-1);
     z-index: 2;
 }
 
@@ -444,45 +438,26 @@ footer {
     }
 
     .camera-section {
-        width: 100%;
+        width: 100vw;
         height: 100vh;
         margin: 0;
         padding: 0;
-        border-radius: 0;
-        box-shadow: none;
-        background: transparent;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 
     .camera-container {
         position: relative;
         width: 100%;
         height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
     }
 
-    #video {
-        width: auto;
-        height: 100%;
-        max-width: 100%;
-        object-fit: cover;
-        transform: scaleX(-1);
-    }
-
-    #output-canvas {
+    #video, #output-canvas {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
         transform: scaleX(-1);
-        z-index: 2;
     }
 
     /* 確保 MediaPipe 輸出不會變形 */
