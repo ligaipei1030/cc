@@ -954,34 +954,26 @@
 
         symptomBtn.addEventListener('click', () => {
             clearAllPoints();
-            isMeridianLearningMode = false;  // 關閉經絡學習模式
-            document.querySelector('.symptom-list').style.display = 'none';
-            symptomOptions.style.display = 
-                symptomOptions.style.display === 'none' ? 'flex' : 'none';
-            meridianOptions.style.display = 'none';
+            isMeridianLearningMode = false;
             
-            // 顯示手部位置提示
-            const handGuide = document.getElementById('hand-position-guide');
-            if (symptomOptions.style.display === 'flex') {
-                handGuide.style.display = 'flex';  // 改為 flex 以支援置中
-            } else {
-                handGuide.style.display = 'none';
-            }
+            // 使用側邊滑出式選單
+            const menu = document.getElementById('symptom-options');
+            menu.classList.toggle('active');
+            
+            // 關閉其他選單
+            meridianOptions.classList.remove('active');
         });
 
         meridianBtn.addEventListener('click', () => {
             clearAllPoints();
-            isMeridianLearningMode = true;  // 設置為經絡學習模式
-            meridianOptions.style.display = 
-                meridianOptions.style.display === 'none' ? 'flex' : 'none';
-            symptomOptions.style.display = 'none';
+            isMeridianLearningMode = true;
             
-            const handGuide = document.getElementById('hand-position-guide');
-            if (meridianOptions.style.display === 'flex') {
-                handGuide.style.display = 'flex';
-            } else {
-                handGuide.style.display = 'none';
-            }
+            // 使用側邊滑出式選單
+            const menu = document.getElementById('meridian-options');
+            menu.classList.toggle('active');
+            
+            // 關閉其他選單
+            symptomOptions.classList.remove('active');
         });
 
         // 修改症狀按鈕點擊事件
@@ -1212,6 +1204,50 @@
                 element.style.top = `${(containerHeight - height) / 2}px`;
             });
         };
+
+        // ===== 新增抽屜控制功能 =====
+        const controlSection = document.querySelector('.control-section');
+        const drawerHandle = document.createElement('div');
+        drawerHandle.className = 'drawer-handle';
+        controlSection.insertBefore(drawerHandle, controlSection.firstChild);
+
+        let startY = 0;
+        let currentTranslate = 85;  // 初始隱藏位置的百分比
+
+        // 處理觸摸開始事件
+        drawerHandle.addEventListener('touchstart', (e) => {
+            startY = e.touches[0].clientY;
+            controlSection.style.transition = 'none';  // 移除過渡效果以實現流暢的拖動
+        });
+
+        // 處理觸摸移動事件
+        drawerHandle.addEventListener('touchmove', (e) => {
+            const deltaY = e.touches[0].clientY - startY;
+            const translateY = Math.max(0, Math.min(85, currentTranslate + (deltaY / window.innerHeight) * 100));
+            controlSection.style.transform = `translateY(${translateY}%)`;
+        });
+
+        // 處理觸摸結束事件
+        drawerHandle.addEventListener('touchend', (e) => {
+            controlSection.style.transition = 'transform 0.3s ease';
+            currentTranslate = currentTranslate < 40 ? 0 : 85;  // 根據位置決定是展開還是收起
+            controlSection.style.transform = `translateY(${currentTranslate}%)`;
+        });
+
+        // 添加選單關閉按鈕
+        const addCloseButton = (menu) => {
+            const closeBtn = document.createElement('button');
+            closeBtn.className = 'close-menu-btn';
+            closeBtn.innerHTML = '×';
+            closeBtn.addEventListener('click', () => {
+                menu.classList.remove('active');
+            });
+            menu.insertBefore(closeBtn, menu.firstChild);
+        };
+
+        // 為兩個選單添加關閉按鈕
+        addCloseButton(symptomOptions);
+        addCloseButton(meridianOptions);
     </script>
 </body>
 </html> 
