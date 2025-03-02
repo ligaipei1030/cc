@@ -444,7 +444,7 @@ footer {
         width: 100%;               /* 標題區域佔滿寬度 */
         text-align: center;        /* 文字置中 */
         padding: 20px 0;           /* 上下內邊距 */
-        margin-bottom: 10px;       /* 與按鈕區域的間距 */
+        margin-bottom: 20px;       /* 與按鈕區域的間距 */
     }
 
     /* 主標題樣式 */
@@ -459,22 +459,30 @@ footer {
     .subtitle {
         font-size: 16px;           /* 副標題字體大小 */
         color: var(--text-secondary); /* 次要文字顏色 */
-        margin-bottom: 0;          /* 移除底部間距 */
+    }
+
+    /* 內容區域設置 */
+    .content-wrapper {
+        display: flex;             /* 使用 flex 布局 */
+        flex-direction: column;    /* 垂直排列 */
+        align-items: center;       /* 水平置中 */
+        padding: 0 20px;          /* 左右內邊距 */
+        flex: 1;                  /* 佔據剩餘空間 */
     }
 
     /* 按鈕組設置 */
     .btn-group {
         width: 100%;              /* 按鈕組佔滿寬度 */
         display: flex;            /* 使用 flex 布局 */
+        flex-direction: row;      /* 水平排列 */
         justify-content: center;  /* 水平置中 */
         gap: 20px;               /* 按鈕之間的間距 */
-        padding: 15px 20px;      /* 上下左右內邊距 */
-        margin-bottom: 15px;     /* 與相機區域的間距 */
+        margin-bottom: 20px;     /* 與相機區域的間距 */
     }
 
     /* 按鈕基本樣式 */
     .btn {
-        width: 45%;              /* 設置按鈕寬度 */
+        flex: 0 1 160px;         /* 固定寬度，允許縮小 */
         padding: 12px 0;         /* 上下內邊距 */
         border-radius: 8px;      /* 圓角效果 */
         font-size: 16px;         /* 字體大小 */
@@ -488,11 +496,10 @@ footer {
     /* 相機區域設置 */
     .camera-section {
         width: 100%;            /* 佔滿寬度 */
-        flex: 1;               /* 佔據剩餘空間 */
         display: flex;          /* 使用 flex 布局 */
         justify-content: center;/* 水平置中 */
         align-items: center;    /* 垂直置中 */
-        padding: 0 20px;        /* 左右內邊距 */
+        padding: 0;            /* 移除內邊距 */
         margin-bottom: 20px;    /* 底部間距 */
     }
 
