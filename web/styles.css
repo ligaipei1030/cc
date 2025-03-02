@@ -450,7 +450,6 @@ footer {
     .btn-group {
         width: 100%;              /* 按鈕組佔滿寬度 */
         display: flex;            /* 使用 flex 布局 */
-        flex-direction: row;      /* 水平排列按鈕 */
         justify-content: center;  /* 水平置中 */
         gap: 20px;               /* 按鈕之間的間距 */
         padding: 10px 20px;      /* 上下左右內邊距 */
@@ -458,29 +457,28 @@ footer {
 
     /* 按鈕基本樣式 */
     .btn {
-        flex: 1;                 /* 平均分配寬度 */
-        max-width: 160px;        /* 限制最大寬度 */
-        padding: 12px 0;         /* 上下內邊距 */
-        border-radius: 25px;     /* 圓角效果 */
+        width: 45%;              /* 設置按鈕寬度 */
+        padding: 15px 0;         /* 上下內邊距 */
+        border-radius: 10px;     /* 圓角效果 */
         font-size: 16px;         /* 字體大小 */
         text-align: center;      /* 文字置中 */
         background: var(--primary-color);  /* 使用主題色 */
         color: white;            /* 白色文字 */
         border: none;            /* 移除邊框 */
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);  /* 陰影效果 */
-        cursor: pointer;         /* 滑鼠指針樣式 */
-        transition: background-color 0.3s ease;  /* 只對背景色添加過渡效果 */
     }
 
     /* 相機區域設置 */
     .camera-section {
         width: 100%;            /* 佔滿寬度 */
-        height: calc(100vh - 200px); /* 減去標題和按鈕的高度 */
+        aspect-ratio: 16/9;     /* 設置 16:9 的比例 */
         position: relative;     /* 相對定位 */
         display: flex;          /* 使用 flex 布局 */
         justify-content: center;/* 水平置中 */
         align-items: center;    /* 垂直置中 */
-        background: black;      /* 黑色背景 */
+        margin: 20px 0;        /* 上下間距 */
+        border: 2px solid #4CAF50;  /* 綠色邊框 */
+        border-radius: 10px;    /* 圓角效果 */
         overflow: hidden;       /* 隱藏溢出內容 */
     }
 
