@@ -437,7 +437,6 @@ footer {
         flex-direction: column;     /* 垂直排列子元素 */
         padding: 0;                 /* 移除內邊距 */
         background: white;          /* 設置白色背景 */
-        overflow: hidden;           /* 防止內容溢出 */
     }
 
     /* 標題區域設置 */
@@ -452,7 +451,6 @@ footer {
     .btn-group {
         width: 100%;              /* 按鈕組佔滿寬度 */
         display: flex;            /* 使用 flex 布局 */
-        flex-direction: row;      /* 水平排列按鈕 */
         justify-content: center;  /* 水平置中 */
         gap: 20px;               /* 按鈕之間的間距 */
         padding: 10px 20px;      /* 上下左右內邊距 */
@@ -475,72 +473,45 @@ footer {
         transition: background-color 0.3s ease;  /* 只對背景色添加過渡效果 */
     }
 
-    /* 按鈕點擊效果 */
-    .btn:active {
-        background: #5a8ba8;     /* 深色背景 */
-    }
-
     /* 相機區域設置 */
     .camera-section {
         width: 100%;            /* 佔滿寬度 */
-        flex: 1;                /* 佔據剩餘空間 */
+        height: 0;              /* 高度設為 0 */
+        padding-bottom: 177.78%; /* 16:9 的反比例 (9/16 = 0.5625) */
         position: relative;     /* 相對定位 */
-        display: flex;          /* 使用 flex 布局 */
-        justify-content: center;/* 水平置中 */
-        align-items: center;    /* 垂直置中 */
         background: black;      /* 黑色背景 */
         overflow: hidden;       /* 隱藏溢出內容 */
-        margin-top: 0;         /* 移除上邊距 */
     }
 
     /* 相機容器設置 */
     .camera-container {
-        width: 100%;              /* 佔滿寬度 */
-        height: 100%;             /* 佔滿高度 */
-        position: relative;        /* 相對定位 */
-        display: flex;            /* 使用 flex 布局 */
-        justify-content: center;  /* 水平置中 */
-        align-items: center;      /* 垂直置中 */
+        position: absolute;     /* 絕對定位 */
+        top: 0;
+        left: 0;
+        width: 100%;           /* 佔滿寬度 */
+        height: 100%;          /* 佔滿高度 */
+        display: flex;         /* 使用 flex 布局 */
+        justify-content: center; /* 水平置中 */
+        align-items: center;    /* 垂直置中 */
     }
 
     /* 視訊和畫布元素設置 */
     #video, #output-canvas {
-        width: 100%;             /* 佔滿寬度 */
-        height: 100%;            /* 佔滿高度 */
-        object-fit: cover;       /* 填滿容器 */
-        position: absolute;      /* 絕對定位 */
-        top: 50%;               /* 垂直置中 */
-        left: 50%;              /* 水平置中 */
-        transform: translate(-50%, -50%) scaleX(-1);  /* 位移和水平翻轉 */
-    }
-
-    /* 選單設置 */
-    .options-menu {
-        position: fixed;         /* 固定定位 */
-        bottom: 0;              /* 貼底部 */
-        left: 0;                /* 貼左側 */
-        width: 100%;            /* 佔滿寬度 */
-        background: white;       /* 白色背景 */
-        border-radius: 20px 20px 0 0;  /* 上方圓角 */
-        padding: 20px;          /* 內邊距 */
-        transform: translateY(100%);    /* 初始隱藏 */
-        transition: transform 0.3s ease; /* 過渡動畫 */
-        z-index: 1000;          /* 層級設置 */
-        display: none;          /* 預設隱藏 */
-    }
-
-    /* 選單顯示狀態 */
-    .options-menu.active {
-        transform: translateY(0);  /* 顯示選單 */
-        display: block;           /* 顯示元素 */
+        width: 100%;           /* 佔滿寬度 */
+        height: 100%;          /* 佔滿高度 */
+        object-fit: cover;     /* 填滿容器 */
+        position: absolute;    /* 絕對定位 */
+        top: 0;
+        left: 0;
     }
 }
 
 /* iOS 特定優化 */
 @supports (-webkit-touch-callout: none) {
     @media screen and (max-width: 768px) {
-        .container {
-            padding-bottom: env(safe-area-inset-bottom);  /* iOS 安全區域適配 */
+        .camera-section {
+            height: calc(100vh - 200px); /* iOS 使用固定高度 */
+            padding-bottom: 0;           /* 移除 padding-bottom */
         }
     }
 }
