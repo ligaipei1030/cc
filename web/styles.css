@@ -459,7 +459,7 @@ footer {
     .subtitle {
         font-size: 16px;
         color: var(--text-secondary);
-        margin-bottom: 20px;  /* 與按鈕的間距 */
+        margin-bottom: 5px;  /* 與按鈕的間距 */
     }
 
     /* 主要內容區域 */
