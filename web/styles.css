@@ -432,10 +432,12 @@ footer {
     /* 主要容器 */
     .container {
         width: 100%;
+        max-width: 600px;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding: 20px;
         background: white;
     }
 
@@ -443,47 +445,38 @@ footer {
     header {
         width: 100%;
         text-align: center;
-        padding: 20px 20px 10px;
-        background: white;
+        padding: 20px 0;
+        position: relative;  /* 為按鈕提供定位參考 */
     }
 
     /* 主要標題 */
     h1 {
         font-size: 24px;
         margin-bottom: 5px;
-        color: var(--text-primary);
-        font-weight: 700;
+        color: #333;
     }
 
     /* 副標題 */
     .subtitle {
         font-size: 16px;
-        color: var(--text-secondary);
-        margin-bottom: -40px;  /* 與按鈕的間距 */
-    }
-
-    /* 主要內容區域 */
-    main {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 0 20px;
+        color: #666;
+        margin-bottom: 60px;  /* 為按鈕留出空間 */
     }
 
     /* 按鈕組置中 */
     .btn-group {
-        width: 100%;
+        position: absolute;
+        top: calc(100% - 30px);  /* 位於標題區域底部 */
+        left: 50%;
+        transform: translateX(-50%);
         display: flex;
-        justify-content: center;  /* 水平置中 */
-        gap: 15px;  /* 按鈕間距 */
-        margin-bottom: 20px;  /* 與影像區域的間距 */
+        gap: 15px;
+        width: auto;  /* 移除寬度限制 */
     }
 
     /* 按鈕樣式 */
     .btn {
-        flex: 1;
-        max-width: 160px;  /* 限制按鈕最大寬度 */
+        width: 140px;
         padding: 12px 0;
         border-radius: 8px;
         font-size: 16px;
@@ -492,18 +485,27 @@ footer {
         color: white;
         border: none;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        cursor: pointer;
+        transition: background 0.3s;
     }
 
     /* 相機區域 */
     .camera-section {
         width: 100%;
-        max-width: 500px;  /* 限制最大寬度 */
-        aspect-ratio: 9/16;  /* 保持手機直向比例 */
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;  /* 與按鈕的間距 */
+    }
+
+    /* 相機容器 */
+    .camera-container {
+        width: 90%;
+        max-width: 500px;
+        aspect-ratio: 9/16;
         position: relative;
         border-radius: 10px;
         overflow: hidden;
         background: black;
-        margin-top: 10px;
     }
 
     /* 視訊和畫布 */
