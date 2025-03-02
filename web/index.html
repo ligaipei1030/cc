@@ -106,9 +106,9 @@
 
         // 設定 canvas 尺寸
         function setupCanvas() {
-            // 設定固定的寬高比（16:9）
-            const aspectRatio = 16/9;
-            canvas.width = 1280;
+            // 使用 9:16 的比例（手機直向）
+            const aspectRatio = 9/16;
+            canvas.width = 720;  // 降低解析度以提升效能
             canvas.height = canvas.width / aspectRatio;
         }
 
@@ -860,70 +860,56 @@
         async function startCamera() {
             try {
                 setupCanvas();
-
-                // 設置視訊元素屬性（iOS 支援）
+                
+                // 設置視訊屬性
                 video.setAttribute('playsinline', '');
-                video.setAttribute('webkit-playsinline', '');
-                video.setAttribute('autoplay', '');
-                video.setAttribute('muted', '');
+                video.width = 720;  // 與 canvas 保持一致
+                video.height = video.width / (9/16);
                 
-                // 設置固定尺寸
-                video.width = 1280;
-                video.height = 720;
-                
-                // 初始化 MediaPipe Camera
+                // 初始化相機
                 const camera = new Camera(video, {
                     onFrame: async () => {
                         await hands.send({image: video});
                     },
-                    width: 1280,
-                    height: 720
+                    width: 720,  // 與 video 和 canvas 保持一致
+                    height: video.height
                 });
 
-                // 確保視訊元素正確顯示
+                // 維持比例的函數
                 const maintainAspectRatio = () => {
                     const container = document.querySelector('.camera-container');
                     const containerWidth = container.offsetWidth;
                     const containerHeight = container.offsetHeight;
-                    const videoAspectRatio = 16/9;
                     
                     // 計算適合的尺寸
                     let width, height;
-                    if (containerWidth / containerHeight > videoAspectRatio) {
-                        // 容器較寬，以高度為基準
+                    const targetAspectRatio = 9/16;
+                    
+                    if (containerWidth / containerHeight > targetAspectRatio) {
                         height = containerHeight;
-                        width = height * videoAspectRatio;
+                        width = height * targetAspectRatio;
                     } else {
-                        // 容器較高，以寬度為基準
                         width = containerWidth;
-                        height = width / videoAspectRatio;
+                        height = width / targetAspectRatio;
                     }
 
-                    // 設置視訊元素尺寸
-                    video.style.width = `${width}px`;
-                    video.style.height = `${height}px`;
-                    video.style.objectFit = 'cover';
-                    
-                    // 設置 canvas 尺寸
-                    canvas.style.width = `${width}px`;
-                    canvas.style.height = `${height}px`;
-                    canvas.style.objectFit = 'cover';
+                    // 統一設置視訊和畫布的尺寸
+                    [video, canvas].forEach(element => {
+                        element.style.width = `${width}px`;
+                        element.style.height = `${height}px`;
+                        element.style.objectFit = 'cover';
+                    });
                 };
 
-                // 立即設置
-                maintainAspectRatio();
-                
-                // 監聽視訊大小變化
-                new ResizeObserver(maintainAspectRatio).observe(video);
-                
-                // 啟動相機
+                // 監聽容器大小變化
+                new ResizeObserver(maintainAspectRatio).observe(
+                    document.querySelector('.camera-container')
+                );
+
                 await camera.start();
-                errorMessage.style.display = 'none';
                 
             } catch (err) {
-                console.error('攝像頭存取錯誤:', err);
-                errorMessage.style.display = 'flex';
-                errorMessage.textContent = '無法存取攝像頭，請確認權限設定並重新整理頁面。';
+                console.error('相機初始化錯誤:', err);
             }
         }
 
