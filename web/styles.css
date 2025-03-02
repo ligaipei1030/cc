@@ -447,24 +447,23 @@ footer {
     }
 
     /* 標題區域 */
-    header {
+    .title-section {
         width: 100%;
         padding: 15px;
+        text-align: center;
         background: white;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        z-index: 100;
     }
 
     /* 相機區域設置 */
     .camera-section {
         width: 100%;
-        height: 50vh; /* 調整為螢幕高度的一半 */
+        height: 60vh;
         background: #000;
         position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
-        overflow: hidden;
     }
 
     /* 相機容器設置 */
@@ -472,9 +471,6 @@ footer {
         width: 100%;
         height: 100%;
         position: relative;
-        aspect-ratio: 9/16;
-        max-width: calc(50vh * 9/16);
-        margin: 0 auto;
     }
 
     /* 視訊和畫布元素設置 */
@@ -483,24 +479,29 @@ footer {
         height: 100%;
         object-fit: cover;
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scaleX(-1);
+        top: 0;
+        left: 0;
+        transform: scaleX(-1);
     }
 
-    /* 功能按鈕區域 */
-    .btn-group {
+    /* 按鈕區域設置 */
+    .control-section {
         width: 100%;
         padding: 15px;
-        display: flex;
-        justify-content: center;
-        gap: 15px;
         background: white;
+    }
+
+    /* 按鈕組樣式 */
+    .btn-group {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 0 10px;
     }
 
     .btn {
         flex: 1;
-        max-width: 150px;
         padding: 12px;
         border-radius: 10px;
         font-size: 16px;
@@ -510,7 +511,7 @@ footer {
         text-align: center;
     }
 
-    /* 選單區域 */
+    /* 選單區域設置 */
     .options-menu {
         width: 100%;
         background: white;
@@ -552,6 +553,10 @@ footer {
 /* iOS 特定優化 */
 @supports (-webkit-touch-callout: none) {
     @media screen and (max-width: 768px) {
+        .camera-container {
+            aspect-ratio: 9/16;
+        }
+
         .toolbar {
             padding-bottom: env(safe-area-inset-bottom);
             height: calc(60px + env(safe-area-inset-bottom));
