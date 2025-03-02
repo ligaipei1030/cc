@@ -106,9 +106,9 @@
 
         // 設定 canvas 尺寸
         function setupCanvas() {
-            // 使用 9:16 的比例（手機直向）
-            canvas.width = 720;
-            canvas.height = 1280; // 直向比例
+            // 使用標準的 16:9 比例
+            canvas.width = 1280;
+            canvas.height = 720;
         }
 
         // 初始化 MediaPipe Hands
@@ -866,12 +866,11 @@
                     onFrame: async () => {
                         await hands.send({image: video});
                     },
-                    width: 720,
-                    height: 1280 // 直向比例
+                    width: 1280,
+                    height: 720
                 });
 
                 await camera.start();
-                
             } catch (err) {
                 console.error('相機初始化錯誤:', err);
             }

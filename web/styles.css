@@ -456,28 +456,15 @@ footer {
         overflow: hidden;
     }
 
-    /* 隱藏原始視訊元素 */
-    #video {
+    #video, #output-canvas {
         position: absolute;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        visibility: hidden;
-    }
-
-    /* 只顯示 canvas */
-    #output-canvas {
-        position: absolute;
-        top: 0;
-        left: 0;
         width: 100%;
         height: 100%;
         object-fit: contain;
         transform: scaleX(-1);
-        z-index: 2;
     }
 
-    /* 移除 MediaPipe 輸出的重複畫面 */
+    /* 隱藏 MediaPipe 的額外輸出 */
     .output_canvas {
         display: none !important;
     }
