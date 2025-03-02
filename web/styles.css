@@ -483,7 +483,7 @@ footer {
 
     /* 相機區域設置 */
     .camera-section {
-        width: 100%;            /* 佔滿寬度 */
+        width: 10%;            /* 佔滿寬度 */
         padding: 0 20px;        /* 左右內邊距 */
         position: relative;     /* 相對定位 */
         display: flex;          /* 使用 flex 布局 */
@@ -498,7 +498,7 @@ footer {
         max-width: 500px;      /* 最大寬度限制 */
         aspect-ratio: 9/16;    /* 保持手機直向比例 */
         position: relative;    /* 相對定位 */
-        border: 2px solid #4CAF50;  /* 綠色邊框 */
+        border: 2px solid #032104;  /* 綠色邊框 */
         border-radius: 10px;   /* 圓角效果 */
         overflow: hidden;      /* 隱藏溢出內容 */
     }
