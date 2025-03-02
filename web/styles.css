@@ -429,43 +429,44 @@ footer {
 
 /* ===== 手機版面配置 ===== */
 @media screen and (max-width: 768px) {
-    /* 基本設置 */
-    body {
-        margin: 0;
-        padding: 0;
-        background: #fff; /* 白色背景 */
-        min-height: 100vh;
-        overflow-y: auto;
-    }
-
     /* 主容器設置 */
     .container {
         width: 100%;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        padding: 0; /* 移除內邊距 */
+        padding: 10px;
+        gap: 10px; /* 元素間距 */
     }
 
     /* 標題區域設置 */
     header {
         width: 100%;
         text-align: center;
-        padding: 20px;
-        background: #fff;
+        padding: 10px 0;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 5px;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        color: var(--text-secondary);
     }
 
     /* 相機區域設置 */
     .camera-section {
         width: 100%;
-        height: 70vh; /* 調整高度 */
+        aspect-ratio: 9/16; /* 保持手機直向比例 */
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
-        background: transparent; /* 移除黑色背景 */
-        margin: 0; /* 移除邊距 */
-        position: relative;
+        margin: 10px 0;
+        border-radius: 15px;
+        overflow: hidden;
     }
 
     /* 相機容器設置 */
@@ -476,35 +477,34 @@ footer {
         display: flex;
         justify-content: center;
         align-items: center;
-        overflow: hidden;
     }
 
     /* 視訊和畫布元素設置 */
     #video, #output-canvas {
         width: 100%;
         height: 100%;
-        object-fit: contain; /* 保持比例 */
+        object-fit: cover; /* 填滿容器 */
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%) scaleX(-1);
     }
 
-    /* 按鈕區域設置 */
+    /* 按鈕組設置 */
     .btn-group {
         width: 100%;
-        padding: 20px;
         display: flex;
         justify-content: center;
-        gap: 20px;
-        background: #fff;
+        gap: 15px;
+        padding: 10px 0;
+        margin-top: 10px; /* 與相機區域保持間距 */
     }
 
     /* 按鈕樣式 */
     .btn {
         flex: 1;
         max-width: 160px;
-        padding: 15px 0;
+        padding: 12px 20px;
         border-radius: 10px;
         font-size: 16px;
         text-align: center;
@@ -514,23 +514,22 @@ footer {
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    /* 選單區域設置 */
+    /* 選單設置 */
     .options-menu {
         width: 100%;
-        padding: 20px;
-        background: #fff;
-        border-radius: 15px 15px 0 0;
-        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-        margin-top: auto; /* 推到底部 */
+        background: white;
+        border-radius: 15px;
+        padding: 15px;
+        margin-top: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 }
 
 /* iOS 特定優化 */
 @supports (-webkit-touch-callout: none) {
     @media screen and (max-width: 768px) {
-        .camera-container {
-            aspect-ratio: 9/16;
-            max-height: 70vh;
+        .container {
+            padding-bottom: env(safe-area-inset-bottom);
         }
     }
 }
