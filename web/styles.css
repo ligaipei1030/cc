@@ -216,18 +216,19 @@ main {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    background: var(--background-color);
 }
 
-/* 隱藏原始視訊元素 */
+/* ===== 視訊元素設置 ===== */
 #video {
     position: absolute;
     width: 100%;
     height: 100%;
     object-fit: contain;
-    visibility: hidden; /* 隱藏但保持運作 */
+    visibility: hidden;
 }
 
-/* 只顯示 canvas */
+/* ===== Canvas 元素設置 ===== */
 #output-canvas {
     position: absolute;
     top: 0;
@@ -236,37 +237,27 @@ main {
     height: 100%;
     object-fit: contain;
     transform: scaleX(-1);
-    z-index: 2;
 }
 
-/* 確保 MediaPipe 輸出的比例 */
-.output_canvas {
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) scaleX(-1) !important;
-    width: auto !important;
-    height: 100% !important;
-    max-width: none !important;
-    object-fit: cover !important;
-}
-
-/* iOS 特定樣式 */
+/* ===== iOS 特定優化 ===== */
 @supports (-webkit-touch-callout: none) {
     .camera-container {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
+        aspect-ratio: 16/9;
+        max-height: 100vh;
+        margin: auto;
     }
 
     #video, #output-canvas {
         position: absolute;
-        top: 0;
-        left: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
+        transform: scaleX(-1);
+    }
+
+    /* 隱藏多餘的 MediaPipe 輸出 */
+    .output_canvas {
+        display: none !important;
     }
 }
 
@@ -438,7 +429,6 @@ footer {
 
 /* ===== 手機版面配置 ===== */
 @media screen and (max-width: 768px) {
-    /* 相機區域設置 */
     .camera-section {
         width: 100vw;
         height: 100vh;
@@ -447,32 +437,13 @@ footer {
         display: flex;
         align-items: center;
         justify-content: center;
-        overflow: hidden;
     }
 
-    /* 相機容器設置 */
     .camera-container {
-        position: relative;
         width: 100%;
         height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-    }
-
-    /* 視訊和畫布元素設置 */
-    #video, #output-canvas {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;  /* 保持原始比例 */
-        transform: scaleX(-1);  /* 鏡像效果 */
-    }
-
-    /* 隱藏 MediaPipe 的額外輸出 */
-    .output_canvas {
-        display: none !important;
+        max-width: 100vw;
+        max-height: 100vh;
     }
 
     /* ===== 控制區域設置 ===== */

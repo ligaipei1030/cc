@@ -861,22 +861,29 @@
         // ===== 相機初始化 =====
         async function startCamera() {
             try {
-                // 設置視訊屬性，確保 iOS 支援
+                // iOS 必要的視訊屬性
                 video.setAttribute('playsinline', '');
                 video.setAttribute('webkit-playsinline', '');
                 video.setAttribute('autoplay', '');
                 video.setAttribute('muted', '');
-                
+
                 // 檢測是否為 iOS 設備
                 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
                 
-                // 設置相機約束條件
+                // 根據設備設置最佳解析度
                 const constraints = {
                     video: {
                         facingMode: 'user',
-                        width: { ideal: isIOS ? 720 : 1280 },
-                        height: { ideal: isIOS ? 1280 : 720 },
-                        aspectRatio: isIOS ? 9/16 : 16/9
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 },
+                        frameRate: { ideal: 30 },    // 設置合適的幀率
+                        aspectRatio: { ideal: 16/9 }, // 強制使用 16:9
+                        // iOS 特定設置
+                        deviceId: undefined,
+                        zoom: 1.0,
+                        whiteBalanceMode: 'continuous',
+                        exposureMode: 'continuous',
+                        focusMode: 'continuous'
                     }
                 };
 
@@ -888,23 +895,27 @@
                     onFrame: async () => {
                         await hands.send({image: video});
                     },
-                    width: isIOS ? 720 : 1280,
-                    height: isIOS ? 1280 : 720
+                    width: 1280,
+                    height: 720
                 });
 
                 await camera.start();
-                
-                // 監聽視訊大小變化
-                new ResizeObserver(() => {
-                    // 更新 canvas 尺寸以匹配視訊
-                    if (isIOS) {
-                        canvas.width = 720;
-                        canvas.height = 1280;
-                    } else {
-                        canvas.width = 1280;
-                        canvas.height = 720;
-                    }
-                }).observe(video);
+
+                // 監聽視訊流變化
+                video.addEventListener('loadedmetadata', () => {
+                    // 獲取實際視訊尺寸
+                    const videoWidth = video.videoWidth;
+                    const videoHeight = video.videoHeight;
+                    
+                    // 更新 canvas 尺寸
+                    canvas.width = videoWidth;
+                    canvas.height = videoHeight;
+                    
+                    // 調整容器比例
+                    const container = document.querySelector('.camera-container');
+                    const aspectRatio = videoWidth / videoHeight;
+                    container.style.aspectRatio = `${aspectRatio}`;
+                });
 
             } catch (err) {
                 console.error('相機初始化錯誤:', err);
