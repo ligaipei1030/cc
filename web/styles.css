@@ -456,7 +456,7 @@ footer {
         gap: 20px;               /* 按鈕之間的間距 */
         padding: 10px 20px;      /* 上下左右內邊距 */
         /* background: white;        白色背景 */
-        margin-bottom: 200px;    /* 與相機區域的間距 */
+        margin-bottom: 500px;    /* 與相機區域的間距 */
     }
 
     /* 按鈕基本樣式 */
