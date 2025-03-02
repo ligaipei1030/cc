@@ -452,12 +452,13 @@ footer {
     .btn-group {
         width: 100%;              /* 按鈕組佔滿寬度 */
         display: flex;
-        /* flex-direction: column; */
+        flex-direction: column;
         justify-content: space-between;  /* 兩端對齊 */
         gap: 20px;               /* 按鈕之間的間距 */
         padding: 10px 20px;      /* 上下左右內邊距 */
         /* background: white;       白色背景 */
-        position: static;        /* 確保不使用固定定位 */
+        position: relative;
+        top: -50px;        /* 確保不使用固定定位 */
         z-index: 1;             /* 確保在正確的層級 */
     }
 
