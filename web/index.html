@@ -104,11 +104,18 @@
         const errorMessage = document.getElementById('error-message');
         const ctx = canvas.getContext('2d');
 
-        // 設定 canvas 尺寸
+        // ===== Canvas 設置 =====
         function setupCanvas() {
-            // 使用標準的 16:9 比例
-            canvas.width = 1280;
-            canvas.height = 720;
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            
+            // 根據設備設置不同的解析度
+            if (isIOS) {
+                canvas.width = 720;   // iOS 使用較小的解析度
+                canvas.height = 1280; // 保持 9:16 比例
+            } else {
+                canvas.width = 1280;  // 其他設備使用標準 HD
+                canvas.height = 720;  // 16:9 比例
+            }
         }
 
         // 初始化 MediaPipe Hands
@@ -854,23 +861,51 @@
         // ===== 相機初始化 =====
         async function startCamera() {
             try {
-                // 設置視訊屬性
+                // 設置視訊屬性，確保 iOS 支援
                 video.setAttribute('playsinline', '');
                 video.setAttribute('webkit-playsinline', '');
+                video.setAttribute('autoplay', '');
+                video.setAttribute('muted', '');
                 
+                // 檢測是否為 iOS 設備
+                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                
+                // 設置相機約束條件
+                const constraints = {
+                    video: {
+                        facingMode: 'user',
+                        width: { ideal: isIOS ? 720 : 1280 },
+                        height: { ideal: isIOS ? 1280 : 720 },
+                        aspectRatio: isIOS ? 9/16 : 16/9
+                    }
+                };
+
                 // 初始化 canvas
                 setupCanvas();
-
+                
                 // 初始化相機
                 const camera = new Camera(video, {
                     onFrame: async () => {
                         await hands.send({image: video});
                     },
-                    width: 1280,
-                    height: 720
+                    width: isIOS ? 720 : 1280,
+                    height: isIOS ? 1280 : 720
                 });
 
                 await camera.start();
+                
+                // 監聽視訊大小變化
+                new ResizeObserver(() => {
+                    // 更新 canvas 尺寸以匹配視訊
+                    if (isIOS) {
+                        canvas.width = 720;
+                        canvas.height = 1280;
+                    } else {
+                        canvas.width = 1280;
+                        canvas.height = 720;
+                    }
+                }).observe(video);
+
             } catch (err) {
                 console.error('相機初始化錯誤:', err);
             }
