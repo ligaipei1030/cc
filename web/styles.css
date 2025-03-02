@@ -444,58 +444,53 @@ footer {
     header {
         width: 100%;               /* 標題區域佔滿寬度 */
         text-align: center;        /* 文字置中 */
-        padding: 20px 0 10px;      /* 上下內邊距，底部較小 */
+        padding: 20px 0;           /* 上下內邊距 */
         background: white;         /* 白色背景 */
     }
 
     /* 按鈕組設置 */
     .btn-group {
         width: 100%;              /* 按鈕組佔滿寬度 */
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;  /* 兩端對齊 */
+        display: flex;            /* 使用 flex 布局 */
+        flex-direction: row;      /* 水平排列按鈕 */
+        justify-content: center;  /* 水平置中 */
         gap: 20px;               /* 按鈕之間的間距 */
-        padding-top: 120px;      /* 上下左右內邊距 */
-        /* background: white;       白色背景 */
-        position: static;
-        /* top: -50px;        確保不使用固定定位 */
-        z-index: 1;             /* 確保在正確的層級 */
+        padding: 10px 20px;      /* 上下左右內邊距 */
+        background: white;        /* 白色背景 */
     }
 
     /* 按鈕基本樣式 */
     .btn {
-        width: calc(50% - 10px);  /* 設置按鈕寬度，考慮間距 */
-        padding: 12px 0;          /* 上下內邊距 */
-        border-radius: 25px;      /* 圓角效果 */
-        font-size: 16px;          /* 字體大小 */
-        text-align: center;       /* 文字置中 */
+        flex: 1;                 /* 平均分配寬度 */
+        max-width: 160px;        /* 限制最大寬度 */
+        padding: 12px 0;         /* 上下內邊距 */
+        border-radius: 25px;     /* 圓角效果 */
+        font-size: 16px;         /* 字體大小 */
+        text-align: center;      /* 文字置中 */
         background: var(--primary-color);  /* 使用主題色 */
-        color: white;             /* 白色文字 */
-        border: none;             /* 移除邊框 */
+        color: white;            /* 白色文字 */
+        border: none;            /* 移除邊框 */
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);  /* 陰影效果 */
-        cursor: pointer;          /* 滑鼠指針樣式 */
+        cursor: pointer;         /* 滑鼠指針樣式 */
         transition: background-color 0.3s ease;  /* 只對背景色添加過渡效果 */
     }
 
     /* 按鈕點擊效果 */
     .btn:active {
-        background: #5a8ba8;      /* 深色背景 */
+        background: #5a8ba8;     /* 深色背景 */
     }
 
     /* 相機區域設置 */
     .camera-section {
-        width: 100%;             /* 佔滿寬度 */
-        flex: 1;                 /* 佔據剩餘空間 */
-        position: relative;      /* 相對定位 */
-        display: flex;           /* 使用 flex 布局 */
-        /*  */
-        flex-direction: column; /* 垂直排列子元素 */
-        /*  */
-        justify-content: center; /* 水平置中 */
-        align-items: center;     /* 垂直置中 */
-        background: black;       /* 黑色背景 */
-        overflow: hidden;        /* 隱藏溢出內容 */
-        margin-top: 0;          /* 移除上邊距 */
+        width: 100%;            /* 佔滿寬度 */
+        flex: 1;                /* 佔據剩餘空間 */
+        position: relative;     /* 相對定位 */
+        display: flex;          /* 使用 flex 布局 */
+        justify-content: center;/* 水平置中 */
+        align-items: center;    /* 垂直置中 */
+        background: black;      /* 黑色背景 */
+        overflow: hidden;       /* 隱藏溢出內容 */
+        margin-top: 0;         /* 移除上邊距 */
     }
 
     /* 相機容器設置 */
