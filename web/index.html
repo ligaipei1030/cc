@@ -936,15 +936,15 @@
             isMeridianLearningMode = false;
             
             // 顯示症狀選單
-            symptomOptions.style.display = 'block';  // 確保選單可見
-            symptomOptions.classList.add('active');   // 觸發滑入動畫
+            symptomOptions.style.display = 'block';
+            symptomOptions.classList.add('active');
             
             // 關閉其他選單
             meridianOptions.classList.remove('active');
             meridianOptions.style.display = 'none';
             
-            // 禁止背景滾動
-            document.body.style.overflow = 'hidden';
+            // 允許背景滾動
+            document.body.style.overflow = 'auto';
         });
 
         meridianBtn.addEventListener('click', () => {
@@ -952,15 +952,15 @@
             isMeridianLearningMode = true;
             
             // 顯示經絡選單
-            meridianOptions.style.display = 'block';  // 確保選單可見
-            meridianOptions.classList.add('active');   // 觸發滑入動畫
+            meridianOptions.style.display = 'block';
+            meridianOptions.classList.add('active');
             
             // 關閉其他選單
             symptomOptions.classList.remove('active');
             symptomOptions.style.display = 'none';
             
-            // 禁止背景滾動
-            document.body.style.overflow = 'hidden';
+            // 允許背景滾動
+            document.body.style.overflow = 'auto';
         });
 
         // 修改症狀按鈕點擊事件
@@ -1221,7 +1221,7 @@
             controlSection.style.transform = `translateY(${currentTranslate}%)`;
         });
 
-        // 添加選單關閉按鈕
+        // 修改關閉按鈕功能
         const addCloseButton = (menu) => {
             const closeBtn = document.createElement('button');
             closeBtn.className = 'close-menu-btn';
@@ -1229,9 +1229,10 @@
             closeBtn.addEventListener('click', () => {
                 menu.classList.remove('active');
                 setTimeout(() => {
-                    menu.style.display = 'none';  // 動畫結束後隱藏
-                    document.body.style.overflow = 'auto';  // 恢復背景滾動
-                }, 300);  // 等待過渡動畫完成
+                    menu.style.display = 'none';
+                    // 保持背景可滾動
+                    document.body.style.overflow = 'auto';
+                }, 300);
             });
             menu.insertBefore(closeBtn, menu.firstChild);
         };
