@@ -431,11 +431,10 @@ footer {
 @media screen and (max-width: 768px) {
     /* 基本設置 */
     body {
-        overflow-y: auto;
-        width: 100%;
         margin: 0;
         padding: 0;
-        background: var(--background-color);
+        background: #000;
+        overflow-y: auto;
     }
 
     .container {
@@ -443,25 +442,28 @@ footer {
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        padding: 10px;
+    }
+
+    /* 標題區域 */
+    header {
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.98);
+        position: sticky;
+        top: 0;
+        z-index: 100;
     }
 
     /* 相機區域設置 */
     .camera-section {
+        flex: 1;
         width: 100%;
-        height: 70vh;
+        min-height: 75vh;
         background: #000;
         position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 15px;
         overflow: hidden;
-        margin-bottom: 20px; /* 與按鈕的間距 */
     }
 
-    /* 相機容器設置 */
+    /* 相機容器 */
     .camera-container {
         width: 100%;
         height: 100%;
@@ -471,68 +473,133 @@ footer {
         justify-content: center;
     }
 
-    /* 視訊和畫布元素設置 */
+    /* 視訊元素 */
     #video, #output-canvas {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* 改為 cover 以填滿容器 */
+        object-fit: cover;
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scaleX(-1);
+        top: 0;
+        left: 0;
     }
 
-    /* 按鈕組設置 */
-    .btn-group {
+    /* 半透明遮罩層 */
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        opacity: 1;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    .overlay.hidden {
+        opacity: 0;
+    }
+
+    /* 控制列設置 */
+    .control-bar {
+        position: absolute;
+        bottom: 20px;
+        left: 5%;
+        width: 90%;
+        background: rgba(10, 10, 10, 0.85);
+        backdrop-filter: blur(10px);
+        border-radius: 24px;
+        padding: 8px;
         display: flex;
         justify-content: center;
-        gap: 15px;
-        padding: 0 10px;
-        margin-bottom: 20px;
+        align-items: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
     }
 
-    /* 按鈕樣式 */
+    /* 按鈕組容器 */
+    .btn-group {
+        display: flex;
+        gap: 8px;
+        padding: 0 4px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .btn-group::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* 按鈕基本樣式 */
     .btn {
-        flex: 1;
-        max-width: 160px;
-        padding: 12px 20px;
-        border-radius: 10px;
-        font-size: 16px;
-        text-align: center;
-        background: var(--primary-color);
-        color: white;
+        min-width: 48px;
+        height: 48px;
+        border-radius: 24px;
         border: none;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        touch-action: manipulation;
     }
 
-    /* 選單設置 */
+    /* 擴展觸控區域 */
+    .btn::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border-radius: 26px;
+    }
+
+    /* 按鈕發光效果 */
+    .btn.primary {
+        background: var(--primary-color);
+        box-shadow: 0 0 12px rgba(120, 166, 200, 0.3);
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% { box-shadow: 0 0 12px rgba(120, 166, 200, 0.3); }
+        50% { box-shadow: 0 0 20px rgba(120, 166, 200, 0.5); }
+        100% { box-shadow: 0 0 12px rgba(120, 166, 200, 0.3); }
+    }
+
+    /* 選單面板 */
     .options-menu {
         position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
-        background: white;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(20px);
         border-radius: 20px 20px 0 0;
         padding: 20px;
-        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
         transform: translateY(100%);
         transition: transform 0.3s ease;
-        z-index: 1000;
+        z-index: 2000;
     }
 
     .options-menu.active {
         transform: translateY(0);
     }
 
-    /* 選單內容設置 */
-    .symptom-list, 
-    #meridian-options {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        padding: 10px;
-        margin-bottom: env(safe-area-inset-bottom);
+    /* iOS 特定優化 */
+    @supports (-webkit-touch-callout: none) {
+        .control-bar {
+            padding-bottom: calc(8px + env(safe-area-inset-bottom));
+        }
+
+        .options-menu {
+            padding-bottom: calc(20px + env(safe-area-inset-bottom));
+        }
     }
 }
 
