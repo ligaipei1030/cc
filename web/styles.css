@@ -189,23 +189,61 @@ main {
     color: var(--text-primary);
 }
 
+/* ===== 選項選單基本樣式 ===== */
 .options-menu {
     position: fixed;
-    right: 155px;
-    top: 50%;
-    transform: translate(50%, -50%);
+    top: 0;
+    right: -100%;  /* 初始位置在螢幕右側外 */
+    width: 80%;
+    height: 100vh;
+    background: white;
+    transition: right 0.3s ease;  /* 平滑過渡效果 */
+    z-index: 1001;  /* 確保在其他元素上方 */
+    padding: 20px;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+    display: block !important;  /* 強制顯示，由 active 類控制位置 */
+}
+
+/* 選單展開時的樣式 */
+.options-menu.active {
+    right: 0;  /* 滑入螢幕 */
+    display: block;  /* 確保選單可見 */
+}
+
+/* 關閉按鈕樣式 */
+.close-menu-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 15px;
-    padding: 15px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    max-height: 90vh;
-    overflow-y: auto;
-    z-index: 1000;
-    width: 230px;
+    justify-content: center;
+    z-index: 1002;  /* 確保在選單內容上方 */
+}
+
+/* 選單內容樣式 */
+.options-menu .options-title {
+    margin-top: 40px;  /* 為關閉按鈕留出空間 */
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+/* 確保選單在手機版正確顯示 */
+@media screen and (max-width: 768px) {
+    .options-menu {
+        display: block !important;  /* 覆蓋可能的 display: none */
+        visibility: visible !important;  /* 確保可見性 */
+        opacity: 1 !important;  /* 確保不透明 */
+    }
 }
 
 .camera-container {
