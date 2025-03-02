@@ -493,20 +493,19 @@ footer {
 
     /* 按鈕區域設置 */
     .btn-group {
-        position: fixed; /* 固定定位 */
-        bottom: 20px; /* 距離底部距離 */
+        position: fixed;
+        bottom: 20px;
         left: 0;
         width: 100%;
         display: flex;
-        justify-content: space-between; /* 兩端對齊 */
-        padding: 0 20px; /* 左右留白 */
-        z-index: 100;
+        justify-content: space-between;
+        padding: 0 20px;
+        z-index: 1001; /* 確保按鈕在選單上方 */
     }
 
     /* 按鈕樣式 */
     .btn {
-        width: 45%; /* 設置按鈕寬度 */
-        max-width: none; /* 移除最大寬度限制 */
+        width: 45%;
         padding: 15px 0;
         border-radius: 25px;
         font-size: 16px;
@@ -515,6 +514,14 @@ footer {
         color: white;
         border: none;
         box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        cursor: pointer; /* 添加指針樣式 */
+        transition: all 0.3s ease; /* 添加過渡效果 */
+    }
+
+    /* 按鈕點擊效果 */
+    .btn:active {
+        transform: scale(0.95);
+        background: #5a8ba8; /* 深一點的顏色 */
     }
 
     /* 選單設置 */
@@ -528,11 +535,39 @@ footer {
         padding: 20px;
         transform: translateY(100%);
         transition: transform 0.3s ease;
-        z-index: 99;
+        z-index: 1000;
+        display: none; /* 初始隱藏 */
     }
 
+    /* 選單顯示狀態 */
     .options-menu.active {
         transform: translateY(0);
+        display: block; /* 顯示選單 */
+    }
+
+    /* 選單內容樣式 */
+    .symptom-list, 
+    #meridian-options {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 10px;
+    }
+
+    /* 選單按鈕樣式 */
+    .option-btn {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        font-size: 14px;
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .option-btn:active {
+        background: #e0e0e0;
     }
 }
 

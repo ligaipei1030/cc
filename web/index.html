@@ -941,14 +941,15 @@
             
             // 顯示症狀選單
             symptomOptions.style.display = 'block';
-            symptomOptions.classList.add('active');
+            setTimeout(() => {
+                symptomOptions.classList.add('active');
+            }, 10);
             
             // 關閉其他選單
             meridianOptions.classList.remove('active');
-            meridianOptions.style.display = 'none';
-            
-            // 允許背景滾動
-            document.body.style.overflow = 'auto';
+            setTimeout(() => {
+                meridianOptions.style.display = 'none';
+            }, 300);
         });
 
         meridianBtn.addEventListener('click', () => {
@@ -957,14 +958,15 @@
             
             // 顯示經絡選單
             meridianOptions.style.display = 'block';
-            meridianOptions.classList.add('active');
+            setTimeout(() => {
+                meridianOptions.classList.add('active');
+            }, 10);
             
             // 關閉其他選單
             symptomOptions.classList.remove('active');
-            symptomOptions.style.display = 'none';
-            
-            // 允許背景滾動
-            document.body.style.overflow = 'auto';
+            setTimeout(() => {
+                symptomOptions.style.display = 'none';
+            }, 300);
         });
 
         // 修改症狀按鈕點擊事件
@@ -1049,7 +1051,7 @@
             });
         });
 
-        // 修改手部選擇按鈕事件
+        // 修改手部選擇按鈕點擊事件
         document.querySelectorAll('.hand-btn').forEach(button => {
             button.addEventListener('click', (e) => {
                 clearAllPoints();
@@ -1234,8 +1236,6 @@
                 menu.classList.remove('active');
                 setTimeout(() => {
                     menu.style.display = 'none';
-                    // 保持背景可滾動
-                    document.body.style.overflow = 'auto';
                 }, 300);
             });
             menu.insertBefore(closeBtn, menu.firstChild);
