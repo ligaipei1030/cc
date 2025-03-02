@@ -470,6 +470,7 @@ footer {
         left: 50%;
         transform: translateX(-50%);
         display: flex;
+        flex-direction: column;
         gap: 15px;
         width: auto;  /* 移除寬度限制 */
     }
