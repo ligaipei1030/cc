@@ -956,24 +956,32 @@
             clearAllPoints();
             isMeridianLearningMode = false;
             
-            // 使用側邊滑出式選單
-            const menu = document.getElementById('symptom-options');
-            menu.classList.toggle('active');
+            // 顯示症狀選單
+            symptomOptions.style.display = 'block';  // 確保選單可見
+            symptomOptions.classList.add('active');   // 觸發滑入動畫
             
             // 關閉其他選單
             meridianOptions.classList.remove('active');
+            meridianOptions.style.display = 'none';
+            
+            // 禁止背景滾動
+            document.body.style.overflow = 'hidden';
         });
 
         meridianBtn.addEventListener('click', () => {
             clearAllPoints();
             isMeridianLearningMode = true;
             
-            // 使用側邊滑出式選單
-            const menu = document.getElementById('meridian-options');
-            menu.classList.toggle('active');
+            // 顯示經絡選單
+            meridianOptions.style.display = 'block';  // 確保選單可見
+            meridianOptions.classList.add('active');   // 觸發滑入動畫
             
             // 關閉其他選單
             symptomOptions.classList.remove('active');
+            symptomOptions.style.display = 'none';
+            
+            // 禁止背景滾動
+            document.body.style.overflow = 'hidden';
         });
 
         // 修改症狀按鈕點擊事件
@@ -1218,19 +1226,19 @@
         drawerHandle.addEventListener('touchstart', (e) => {
             startY = e.touches[0].clientY;
             controlSection.style.transition = 'none';  // 移除過渡效果以實現流暢的拖動
-        });
+        }, { passive: true });  // 優化觸摸事件性能
 
         // 處理觸摸移動事件
         drawerHandle.addEventListener('touchmove', (e) => {
             const deltaY = e.touches[0].clientY - startY;
             const translateY = Math.max(0, Math.min(85, currentTranslate + (deltaY / window.innerHeight) * 100));
             controlSection.style.transform = `translateY(${translateY}%)`;
-        });
+        }, { passive: true });
 
         // 處理觸摸結束事件
-        drawerHandle.addEventListener('touchend', (e) => {
+        drawerHandle.addEventListener('touchend', () => {
             controlSection.style.transition = 'transform 0.3s ease';
-            currentTranslate = currentTranslate < 40 ? 0 : 85;  // 根據位置決定是展開還是收起
+            currentTranslate = currentTranslate < 40 ? 0 : 85;
             controlSection.style.transform = `translateY(${currentTranslate}%)`;
         });
 
@@ -1241,6 +1249,10 @@
             closeBtn.innerHTML = '×';
             closeBtn.addEventListener('click', () => {
                 menu.classList.remove('active');
+                setTimeout(() => {
+                    menu.style.display = 'none';  // 動畫結束後隱藏
+                    document.body.style.overflow = 'auto';  // 恢復背景滾動
+                }, 300);  // 等待過渡動畫完成
             });
             menu.insertBefore(closeBtn, menu.firstChild);
         };

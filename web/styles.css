@@ -429,93 +429,76 @@ footer {
 
 /* ===== 手機版面配置 ===== */
 @media screen and (max-width: 768px) {
-    /* 允許頁面滾動 */
-    body {
-        overflow-y: auto;        /* 允許垂直滾動 */
-        height: auto;            /* 高度自適應內容 */
-        min-height: 100vh;       /* 最小高度為視窗高度 */
-    }
-
+    /* 主容器設置 - 允許滾動 */
     .container {
-        min-height: 100vh;       /* 確保容器至少佔滿視窗高度 */
-        overflow-y: visible;     /* 允許內容溢出滾動 */
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;  /* 改為最小高度 */
+        overflow-y: auto;   /* 允許垂直滾動 */
+        position: relative;
+        padding-bottom: 80px;  /* 為底部控制區預留空間 */
     }
 
-    /* 相機區域固定在頂部 */
+    /* 相機區域設置 - 固定高度 */
     .camera-section {
-        position: sticky;        /* 固定在頂部 */
-        top: 0;                 /* 貼齊頂部 */
-        height: 70vh;           /* 佔據 70% 視窗高度 */
-        z-index: 1;            /* 確保在其他內容上方 */
+        height: 100vh;      /* 設定固定高度 */
+        width: 100%;
+        position: relative;
+        margin-bottom: 20px;  /* 與下方內容保持間距 */
+    }
+
+    /* 內容區域設置 */
+    .content-section {
+        padding: 20px;
+        margin-bottom: 80px;  /* 為底部控制區預留空間 */
+    }
+
+    /* 控制區域設置 - 改為固定在底部 */
+    .control-section {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px 20px 0 0;
+        padding: 15px;
+        transform: translateY(85%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);  /* 添加陰影 */
     }
 
     /* 選項選單改為全屏顯示 */
     .options-menu {
-        position: relative;     /* 改為相對定位 */
-        right: 0;              /* 重置右側位置 */
-        width: 100%;           /* 佔滿寬度 */
-        height: auto;          /* 高度自適應 */
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;    /* 改為全寬 */
+        height: 100vh;
         background: white;
+        transition: right 0.3s ease;
+        z-index: 1001;
         padding: 20px;
-        margin-top: 20px;      /* 與相機區域保持間距 */
-        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-        display: none;         /* 預設隱藏 */
+        overflow-y: auto;  /* 允許內容滾動 */
     }
 
-    /* 選單顯示時的樣式 */
-    .options-menu.active {
-        display: block;        /* 顯示選單 */
-        animation: slideUp 0.3s ease; /* 添加動畫效果 */
-    }
-
-    /* 選單動畫 */
-    @keyframes slideUp {
-        from {
-            transform: translateY(20px);
-            opacity: 0;
-        }
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-
-    /* 控制區域固定在底部 */
-    .control-section {
-        position: sticky;      /* 改為粘性定位 */
-        bottom: 0;            /* 固定在底部 */
-        background: white;
-        padding: 15px;
-        z-index: 2;          /* 確保在選單上方 */
-    }
-
-    /* 選項按鈕網格布局 */
-    .symptom-list, #meridian-options {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* 兩列布局 */
-        gap: 15px;
-        padding: 15px;
-        width: 100%;
-        max-width: none;      /* 移除最大寬度限制 */
-    }
-
-    /* 關閉按鈕樣式 */
+    /* 選單關閉按鈕樣式 */
     .close-menu-btn {
         position: absolute;
-        top: 10px;
-        right: 10px;
-        width: 30px;
-        height: 30px;
+        top: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         background: var(--primary-color);
         color: white;
         border: none;
-        font-size: 20px;
+        font-size: 24px;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 3;
+        z-index: 1002;
     }
 }
 
