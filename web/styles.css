@@ -451,6 +451,7 @@ footer {
     .btn-group {
         width: 100%;
         display: flex;
+        flex-direction: column;
         justify-content: center; /* 水平置中 */
         gap: 20px; /* 按鈕間距 */
         padding: 10px 20px; /* 上下左右留白 */
