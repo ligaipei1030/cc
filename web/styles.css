@@ -435,23 +435,27 @@ footer {
         width: 100%;
         margin: 0;
         padding: 0;
+        background: var(--background-color);
     }
 
     .container {
         width: 100%;
+        height: auto;
         min-height: 100vh;
-        padding: 0;  /* 移除內邊距 */
-        margin: 0;   /* 移除外邊距 */
-        overflow-x: hidden;  /* 防止橫向滾動 */
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
     }
 
     /* 相機區域設置 */
     .camera-section {
         width: 100%;
-        height: 100vh;
+        height: 60vh; /* 減少相機區域高度 */
         margin: 0;
         padding: 0;
-        position: relative;
+        position: sticky; /* 固定在頂部 */
+        top: 0;
+        z-index: 10;
     }
 
     /* 相機容器設置 */
@@ -462,7 +466,7 @@ footer {
         display: flex;
         align-items: center;
         justify-content: center;
-        overflow: hidden;
+        background: #000; /* 添加黑色背景 */
     }
 
     /* 視訊和畫布元素設置 */
@@ -475,6 +479,39 @@ footer {
         left: 0;
     }
 
+    /* 選單區域設置 */
+    .options-menu {
+        position: relative; /* 改為相對定位 */
+        top: auto;
+        left: auto;
+        width: 100%;
+        height: auto; /* 自適應高度 */
+        min-height: 40vh; /* 最小高度 */
+        background: white;
+        transform: none; /* 移除變形 */
+        transition: none;
+        z-index: 5;
+        padding: 20px;
+        margin-top: -20px; /* 與相機區域重疊 */
+        border-radius: 20px 20px 0 0;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    }
+
+    .options-menu.active {
+        transform: none;
+        display: block;
+    }
+
+    /* 選單內容設置 */
+    .symptom-list, 
+    #meridian-options {
+        width: 100%;
+        padding: 15px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
     /* 控制區域設置 */
     .control-section {
         position: fixed;
@@ -484,59 +521,23 @@ footer {
         background: rgba(255, 255, 255, 0.95);
         padding: 15px;
         border-radius: 20px 20px 0 0;
-        z-index: 1000;
-        transform: translateY(85%);
+        z-index: 100;
     }
 
-    /* 選單設置 */
-    .options-menu {
-        position: fixed;
-        top: 0;
-        left: 0;  /* 改為從左側滑入 */
-        width: 100%;
-        height: 100vh;
-        background: white;
-        transform: translateX(-100%);  /* 初始位置在左側 */
-        transition: transform 0.3s ease;
-        z-index: 1001;
-        overflow-y: auto;
-        padding: 20px;
-        box-sizing: border-box;
-    }
-
-    .options-menu.active {
-        transform: translateX(0);  /* 滑入時移動到可見位置 */
-    }
-
-    /* 選單內容設置 */
-    .symptom-list, 
-    #meridian-options {
-        width: 100%;
-        max-width: 100%;
-        padding: 15px;
-        box-sizing: border-box;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+    /* 按鈕組樣式 */
+    .btn-group {
+        display: flex;
+        flex-direction: row; /* 改為水平排列 */
+        justify-content: space-around;
         gap: 10px;
     }
 
-    /* 按鈕樣式調整 */
-    .option-btn {
-        width: 100%;
-        margin: 0;
+    .btn {
+        flex: 1;
         padding: 12px;
         font-size: 14px;
         text-align: center;
-    }
-
-    /* 關閉按鈕位置調整 */
-    .close-menu-btn {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        width: 40px;
-        height: 40px;
-        z-index: 1002;
+        white-space: nowrap;
     }
 }
 
@@ -544,10 +545,7 @@ footer {
 @supports (-webkit-touch-callout: none) {
     @media screen and (max-width: 768px) {
         .camera-container {
-            aspect-ratio: 9/16;
-            max-height: 100vh;
-            width: 100%;
-            margin: 0 auto;
+            aspect-ratio: auto; /* 移除固定比例 */
         }
 
         /* 處理 iOS 安全區域 */
@@ -556,8 +554,8 @@ footer {
         }
 
         .options-menu {
-            padding-top: env(safe-area-inset-top);
-            padding-bottom: env(safe-area-inset-bottom);
+            padding-top: 20px;
+            padding-bottom: calc(80px + env(safe-area-inset-bottom));
         }
     }
 }
