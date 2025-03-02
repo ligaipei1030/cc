@@ -466,7 +466,7 @@ footer {
     /* 按鈕組置中 */
     .btn-group {
         position: absolute;
-        top: calc(-30px);  /* 位於標題區域底部 */
+        top: -30px;  /* 位於標題區域底部 */
         left: 5%;
         transform: translateX(-50%);
         display: flex;
