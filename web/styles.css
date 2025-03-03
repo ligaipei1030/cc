@@ -572,39 +572,13 @@ footer {
         gap: 20px;
     }
 
-    /* 按鈕區域 */
-    .control-section {
-        width: 100%;
-        padding: 0 20px;
-        margin-bottom: 20px;
-    }
-
-    /* 按鈕組 */
-    .btn-group {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-    }
-
-    /* 按鈕樣式 */
-    .btn {
-        flex: 1;
-        max-width: 160px;
-        padding: 12px 0;
-        border-radius: 8px;
-        font-size: 16px;
-        text-align: center;
-        background: #007bff;  /* 藍色主題 */
-        color: white;
-        border: none;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
     /* 相機區域 */
     .camera-section {
         width: 100%;
-        padding: 0 20px;
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        max-width: 500px;  /* 限制最大寬度 */
     }
 
     /* 相機容器 */
@@ -615,18 +589,39 @@ footer {
         border-radius: 10px;
         overflow: hidden;
         position: relative;
-        border: 2px solid #4CAF50;  /* 綠色邊框 */
+        border: 2px solid #4CAF50;
+        margin: 0 auto;  /* 確保水平置中 */
     }
 
-    /* 視訊和畫布元素 */
-    #video, #output-canvas {
+    /* 按鈕區域 */
+    .control-section {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scaleX(-1);
+        max-width: 500px;  /* 與相機區域相同的最大寬度 */
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
+    /* 按鈕組 */
+    .btn-group {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        padding: 0 20px;  /* 保持按鈕的內邊距 */
+    }
+
+    /* 按鈕樣式 */
+    .btn {
+        flex: 1;
+        max-width: 160px;
+        padding: 12px 0;
+        border-radius: 8px;
+        font-size: 16px;
+        text-align: center;
+        background: #007bff;
+        color: white;
+        border: none;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 }
 
