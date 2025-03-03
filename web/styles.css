@@ -577,7 +577,7 @@ footer {
     /* 按鈕區域 */
     .control-section {
         position: absolute;
-        top: 150px;  /* 調整頂部位置，往上移 */
+        top: 130px;  /* 調整頂部位置，往上移 */
         left: 50%;   
         transform: translateX(-50%);
         width: 100%;
