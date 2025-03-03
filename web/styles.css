@@ -527,15 +527,106 @@ footer {
     }
 }
 
-/* ===== 手機直向特定樣式 ===== */
+/* ===== 手機直向版面配置 ===== */
 @media screen and (max-width: 768px) and (orientation: portrait) {
-    /* 只覆蓋需要特別處理的樣式 */
-    .control-section {
-        order: 1;  /* 確保控制區域在相機區域之前 */
+    /* 主容器 */
+    .container {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: white;
+        padding: 20px;
     }
 
+    /* 標題區域 */
+    header {
+        width: 100%;
+        text-align: center;
+        padding: 20px 0;
+        margin-bottom: 30px;
+    }
+
+    /* 主標題 */
+    h1 {
+        font-size: 28px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 8px;
+    }
+
+    /* 副標題 */
+    .subtitle {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 0;
+    }
+
+    /* 內容區域 */
+    .content-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    /* 按鈕區域 */
+    .control-section {
+        width: 100%;
+        padding: 0 20px;
+        margin-bottom: 20px;
+    }
+
+    /* 按鈕組 */
+    .btn-group {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    /* 按鈕樣式 */
+    .btn {
+        flex: 1;
+        max-width: 160px;
+        padding: 12px 0;
+        border-radius: 8px;
+        font-size: 16px;
+        text-align: center;
+        background: #007bff;  /* 藍色主題 */
+        color: white;
+        border: none;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    /* 相機區域 */
     .camera-section {
-        order: 2;
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    /* 相機容器 */
+    .camera-container {
+        width: 100%;
+        aspect-ratio: 9/16;
+        background: black;
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+        border: 2px solid #4CAF50;  /* 綠色邊框 */
+    }
+
+    /* 視訊和畫布元素 */
+    #video, #output-canvas {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scaleX(-1);
     }
 }
 
