@@ -576,7 +576,7 @@ footer {
 
     /* 按鈕區域 */
     .control-section {
-        position: absolute;
+        position: relative;
         top: 350px;  /* 調整頂部位置 */
         left: 50%;   /* 置中對齊 */
         transform: translateX(-50%);  /* 水平置中 */
@@ -619,7 +619,7 @@ footer {
         background: black;
         border-radius: 10px;
         overflow: hidden;
-        position: absolute;
+        position: relative;
         border: 2px solid #4CAF50;
     }
 
