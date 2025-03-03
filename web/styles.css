@@ -609,7 +609,7 @@ footer {
     .camera-section {
         width: 100%;
         padding: 0 20px;
-        margin-top: 80px;  /* 為按鈕留出空間 */
+        margin-top: 40px;  /* 為按鈕留出空間 */
     }
 
     /* 相機容器 */
