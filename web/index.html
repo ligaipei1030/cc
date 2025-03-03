@@ -29,6 +29,13 @@
         </header>
         
         <main>
+            <div class="control-section">
+                <div class="btn-group">
+                    <button class="btn symptom-btn">症狀查找</button>
+                    <button class="btn meridian-btn">經絡學習</button>
+                </div>
+            </div>
+
             <div class="content-wrapper">
                 <div class="camera-section">
                     <div class="camera-container">
@@ -53,47 +60,28 @@
                     </div>
                 </div>
                 
-                <div class="control-section">
-                    <div class="btn-group">
-                        <button class="btn symptom-btn">
-                            <i class="fas fa-search"></i>
-                            症狀查找
-                        </button>
-                        <button class="btn meridian-btn">
-                            <i class="fas fa-book-medical"></i>
-                            經絡學習
-                        </button>
+                <div id="symptom-options" class="options-menu" style="display: none;">
+                    <div class="options-title">選擇顯示穴位的手</div>
+                    <div class="hand-choice">
+                        <button class="hand-btn" data-hand="left">左手</button>
+                        <button class="hand-btn" data-hand="right">右手</button>
+                    </div>
+                    <div class="symptom-list" style="display: none;">
+                        <div class="options-title">症狀選擇</div>
+                        <button class="option-btn" data-acupoint="魚際穴" data-location="yujixue">哮喘</button>
+                        <button class="option-btn">經痛</button>
                     </div>
                 </div>
-            </div>
-            
-            <!-- 修改症狀選擇選單結構 -->
-            <div id="symptom-options" class="options-menu" style="display: none;">
-                <div class="options-title">選擇顯示穴位的手</div>
-                <div class="hand-choice">
-                    <button class="hand-btn" data-hand="left">左手</button>
-                    <button class="hand-btn" data-hand="right">右手</button>
+                
+                <div id="meridian-options" class="options-menu" style="display: none;">
+                    <div class="options-title">經絡選擇</div>
+                    <button class="option-btn">手太陰肺經</button>
+                    <button class="option-btn">手陽明大腸經</button>
+                    <button class="option-btn">手厥陰心包經</button>
+                    <button class="option-btn">手少陽三焦經</button>
+                    <button class="option-btn">手少陰心經</button>
+                    <button class="option-btn">手太陽小腸經</button>
                 </div>
-                <div class="symptom-list" style="display: none;">
-                    <div class="options-title">症狀選擇</div>
-                    <!-- <button class="option-btn">疲勞</button> -->
-                    <!-- <button class="option-btn">頭痛</button> -->
-                    <!-- <button class="option-btn">頭暈</button> -->
-                    <button class="option-btn" data-acupoint="魚際穴" data-location="yujixue">哮喘</button>
-                    <button class="option-btn">經痛</button>
-                    <!-- <button class="option-btn">牙齒痛</button> -->
-                </div>
-            </div>
-            
-            <!-- 經絡選擇選單 -->
-            <div id="meridian-options" class="options-menu" style="display: none;">
-                <div class="options-title">經絡選擇</div>
-                <button class="option-btn">手太陰肺經</button>
-                <button class="option-btn">手陽明大腸經</button>
-                <button class="option-btn">手厥陰心包經</button>
-                <button class="option-btn">手少陽三焦經</button>
-                <button class="option-btn">手少陰心經</button>
-                <button class="option-btn">手太陽小腸經</button>
             </div>
         </main>
     </div>
