@@ -535,19 +535,21 @@ footer {
         display: flex;
         flex-direction: column;
         align-items: center;
-        background: #f5f5f5;  /* 更改背景色 */
+        background: #f5f5f5;
         padding: 20px;
     }
 
-    /* 標題區塊包裝器 */
-    .header-section {
+    /* 主面板 */
+    .main-panel {
         width: 100%;
         max-width: 500px;
         background: white;
         border-radius: 10px;
         padding: 20px;
-        margin-bottom: 20px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     /* 標題區域 */
@@ -575,7 +577,7 @@ footer {
     /* 按鈕區域 */
     .control-section {
         width: 100%;
-        margin-bottom: 0;  /* 移除底部間距 */
+        margin-bottom: 20px;
     }
 
     /* 按鈕組 */
@@ -608,15 +610,6 @@ footer {
     /* 右側按鈕位置調整 */
     .btn.meridian-btn {
         transform: translateX(2px);
-    }
-
-    /* 內容區域 */
-    .content-wrapper {
-        width: 100%;
-        max-width: 500px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
     }
 
     /* 相機區域 */
