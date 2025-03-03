@@ -28,7 +28,7 @@
             <p class="subtitle">Traditional Chinese Medicine Diagnosis System</p>
         </header>
         
-        <main>
+        <div class="content-wrapper">
             <div class="control-section">
                 <div class="btn-group">
                     <button class="btn symptom-btn">症狀查找</button>
@@ -36,54 +36,52 @@
                 </div>
             </div>
 
-            <div class="content-wrapper">
-                <div class="camera-section">
-                    <div class="camera-container">
-                        <video id="video"></video>
-                        <canvas id="output-canvas"></canvas>
-                        <div id="acupoint-name" class="acupoint-title">
-                            <!-- 穴位名稱會在這裡顯示 -->
-                        </div>
-                        <div id="palm-notification" class="center-guide palm-guide">
-                            請將手掌心朝向鏡頭
-                        </div>
-                        <div id="hand-position-guide" class="center-guide">
-                            請將手完整置於畫面中
-                        </div>
-                        <div id="error-message" style="display: none;" class="error-message">
-                            無法存取攝像頭，請確認權限設定。
-                        </div>
-                        <div id="timer" class="timer">3</div>
-                        <div id="massage-complete" class="massage-complete" style="display: none;">
-                            按摩結束
-                        </div>
+            <div class="camera-section">
+                <div class="camera-container">
+                    <video id="video"></video>
+                    <canvas id="output-canvas"></canvas>
+                    <div id="acupoint-name" class="acupoint-title">
+                        <!-- 穴位名稱會在這裡顯示 -->
                     </div>
-                </div>
-                
-                <div id="symptom-options" class="options-menu" style="display: none;">
-                    <div class="options-title">選擇顯示穴位的手</div>
-                    <div class="hand-choice">
-                        <button class="hand-btn" data-hand="left">左手</button>
-                        <button class="hand-btn" data-hand="right">右手</button>
+                    <div id="palm-notification" class="center-guide palm-guide">
+                        請將手掌心朝向鏡頭
                     </div>
-                    <div class="symptom-list" style="display: none;">
-                        <div class="options-title">症狀選擇</div>
-                        <button class="option-btn" data-acupoint="魚際穴" data-location="yujixue">哮喘</button>
-                        <button class="option-btn">經痛</button>
+                    <div id="hand-position-guide" class="center-guide">
+                        請將手完整置於畫面中
                     </div>
-                </div>
-                
-                <div id="meridian-options" class="options-menu" style="display: none;">
-                    <div class="options-title">經絡選擇</div>
-                    <button class="option-btn">手太陰肺經</button>
-                    <button class="option-btn">手陽明大腸經</button>
-                    <button class="option-btn">手厥陰心包經</button>
-                    <button class="option-btn">手少陽三焦經</button>
-                    <button class="option-btn">手少陰心經</button>
-                    <button class="option-btn">手太陽小腸經</button>
+                    <div id="error-message" style="display: none;" class="error-message">
+                        無法存取攝像頭，請確認權限設定。
+                    </div>
+                    <div id="timer" class="timer">3</div>
+                    <div id="massage-complete" class="massage-complete" style="display: none;">
+                        按摩結束
+                    </div>
                 </div>
             </div>
-        </main>
+            
+            <div id="symptom-options" class="options-menu" style="display: none;">
+                <div class="options-title">選擇顯示穴位的手</div>
+                <div class="hand-choice">
+                    <button class="hand-btn" data-hand="left">左手</button>
+                    <button class="hand-btn" data-hand="right">右手</button>
+                </div>
+                <div class="symptom-list" style="display: none;">
+                    <div class="options-title">症狀選擇</div>
+                    <button class="option-btn" data-acupoint="魚際穴" data-location="yujixue">哮喘</button>
+                    <button class="option-btn">經痛</button>
+                </div>
+            </div>
+            
+            <div id="meridian-options" class="options-menu" style="display: none;">
+                <div class="options-title">經絡選擇</div>
+                <button class="option-btn">手太陰肺經</button>
+                <button class="option-btn">手陽明大腸經</button>
+                <button class="option-btn">手厥陰心包經</button>
+                <button class="option-btn">手少陽三焦經</button>
+                <button class="option-btn">手少陰心經</button>
+                <button class="option-btn">手太陽小腸經</button>
+            </div>
+        </div>
     </div>
 
     <script>
