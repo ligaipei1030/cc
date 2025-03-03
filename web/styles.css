@@ -578,14 +578,17 @@ footer {
     .control-section {
         width: 100%;
         margin-bottom: 20px;
+        display: flex;
+        justify-content: center;  /* 確保按鈕組置中 */
     }
 
     /* 按鈕組 */
     .btn-group {
-        width: 100%;
+        width: auto;  /* 改為自動寬度 */
         display: flex;
         justify-content: center;
         gap: 4px;
+        padding: 0;  /* 移除內邊距 */
     }
 
     /* 按鈕樣式 */
