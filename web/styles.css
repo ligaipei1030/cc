@@ -571,15 +571,15 @@ footer {
     .subtitle {
         font-size: 16px;
         color: #666;
-        margin-bottom: 30px;  /* 增加與按鈕的間距 */
+        margin-bottom: 20px;  /* 減少與按鈕的間距 */
     }
 
     /* 按鈕區域 */
     .control-section {
         position: absolute;
-        top: 140px;  /* 調整頂部位置 */
-        left: 50%;   /* 置中對齊 */
-        transform: translateX(-50%);  /* 水平置中 */
+        top: 120px;  /* 調整頂部位置，往上移 */
+        left: 50%;   
+        transform: translateX(-50%);
         width: 100%;
     }
 
@@ -609,7 +609,7 @@ footer {
     .camera-section {
         width: 100%;
         padding: 0 20px;
-        margin-top: 80px;  /* 為按鈕留出空間 */
+        margin-top: 60px;  /* 減少上方間距 */
     }
 
     /* 相機容器 */
