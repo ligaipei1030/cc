@@ -571,7 +571,7 @@ footer {
     .subtitle {
         font-size: 16px;
         color: #666;
-        margin-bottom: 30px;  /* 減少與按鈕的間距 */
+        margin-bottom: 40px;  /* 減少與按鈕的間距 */
     }
 
     /* 按鈕區域 */
