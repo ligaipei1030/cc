@@ -472,19 +472,25 @@ footer {
         align-items: center;
     }
 
+    /* 控制區域 */
+    .control-section {
+        width: 100%;
+        position: relative;
+        z-index: 10;
+    }
+
     /* 按鈕組置中 */
     .btn-group {
         width: 100%;
         padding: 0 20px;
         display: flex;
-        justify-content: space-between;  /* 按鈕兩端對齊 */
-        margin-bottom: 30px;  /* 增加與相機區域的間距 */
-        position: static;  /* 移除相對定位 */
+        justify-content: space-between;
+        margin-bottom: 30px;
     }
 
     /* 按鈕樣式 */
     .btn {
-        width: 45%;  /* 調整按鈕寬度 */
+        width: 45%;
         max-width: 160px;
         padding: 12px 0;
         border-radius: 8px;
