@@ -576,17 +576,20 @@ footer {
 
     /* 按鈕區域 */
     .control-section {
-        position: absolute;  /* 絕對定位 */
-        right: 20px;        /* 向右對齊 */
-        top: 100px;         /* 調整頂部位置 */
-        width: auto;
+        position: absolute;
+        top: 140px;  /* 調整頂部位置 */
+        left: 50%;   /* 置中對齊 */
+        transform: translateX(-50%);  /* 水平置中 */
+        width: 100%;
     }
 
     /* 按鈕組 */
     .btn-group {
         display: flex;
-        flex-direction: column;  /* 改為垂直排列 */
-        gap: 10px;              /* 按鈕間距 */
+        flex-direction: row;  /* 水平排列 */
+        justify-content: center;
+        gap: 20px;  /* 按鈕間距 */
+        padding: 0 20px;
     }
 
     /* 按鈕樣式 */
@@ -604,10 +607,9 @@ footer {
 
     /* 相機區域 */
     .camera-section {
-        width: calc(100% - 160px);  /* 減去按鈕寬度和間距 */
-        padding: 0;
-        margin-left: auto;          /* 向右對齊 */
-        margin-right: 20px;         /* 右側間距 */
+        width: 100%;
+        padding: 0 20px;
+        margin-top: 80px;  /* 為按鈕留出空間 */
     }
 
     /* 相機容器 */
