@@ -529,22 +529,31 @@ footer {
 
 /* ===== 手機直向版面配置 ===== */
 @media screen and (max-width: 768px) and (orientation: portrait) {
-    /* 主容器 */
     .container {
         width: 100%;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
-        background: white;
+        background: #f5f5f5;  /* 更改背景色 */
         padding: 20px;
+    }
+
+    /* 標題區塊包裝器 */
+    .header-section {
+        width: 100%;
+        max-width: 500px;
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
     /* 標題區域 */
     header {
         width: 100%;
         text-align: center;
-        padding: 20px 0;
         margin-bottom: 30px;
     }
 
@@ -560,16 +569,54 @@ footer {
     .subtitle {
         font-size: 16px;
         color: #666;
-        margin-bottom: 0;
+        margin-bottom: 20px;
+    }
+
+    /* 按鈕區域 */
+    .control-section {
+        width: 100%;
+        margin-bottom: 0;  /* 移除底部間距 */
+    }
+
+    /* 按鈕組 */
+    .btn-group {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+    }
+
+    /* 按鈕樣式 */
+    .btn {
+        width: 160px;
+        padding: 12px 0;
+        border-radius: 8px;
+        font-size: 16px;
+        text-align: center;
+        background: #007bff;
+        color: white;
+        border: none;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        position: relative;
+    }
+
+    /* 左側按鈕位置調整 */
+    .btn.symptom-btn {
+        transform: translateX(-2px);
+    }
+
+    /* 右側按鈕位置調整 */
+    .btn.meridian-btn {
+        transform: translateX(2px);
     }
 
     /* 內容區域 */
     .content-wrapper {
         width: 100%;
+        max-width: 500px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 20px;
     }
 
     /* 相機區域 */
@@ -578,7 +625,6 @@ footer {
         display: flex;
         justify-content: center;
         padding: 0;
-        max-width: 500px;  /* 限制最大寬度 */
     }
 
     /* 相機容器 */
@@ -590,50 +636,7 @@ footer {
         overflow: hidden;
         position: relative;
         border: 2px solid #4CAF50;
-        margin: 0 auto;  /* 確保水平置中 */
-    }
-
-    /* 按鈕區域 */
-    .control-section {
-        width: 100%;
-        max-width: 500px;
-        padding: 0;
-        margin-bottom: 20px;
-        position: relative;  /* 為絕對定位提供參考 */
-    }
-
-    /* 按鈕組 */
-    .btn-group {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        gap: 4px;  /* 減小按鈕間距為4px */
-        padding: 0;
-        position: relative;  /* 為絕對定位提供參考 */
-    }
-
-    /* 按鈕樣式 */
-    .btn {
-        width: 160px;  /* 固定寬度 */
-        padding: 12px 0;
-        border-radius: 8px;
-        font-size: 16px;
-        text-align: center;
-        background: #007bff;
-        color: white;
-        border: none;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        position: relative;  /* 啟用相對定位 */
-    }
-
-    /* 左側按鈕位置調整 */
-    .btn.symptom-btn {
-        transform: translateX(-2px);  /* 向左移動2px */
-    }
-
-    /* 右側按鈕位置調整 */
-    .btn.meridian-btn {
-        transform: translateX(2px);  /* 向右移動2px */
+        margin: 0 auto;
     }
 }
 
