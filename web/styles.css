@@ -446,7 +446,7 @@ footer {
         width: 100%;
         text-align: center;
         padding: 20px 0;
-        margin-bottom: 40px;  /* 增加與按鈕的間距 */
+        margin-bottom: 20px;
     }
 
     /* 主要標題 */
@@ -466,7 +466,6 @@ footer {
     /* 內容包裝器 */
     .content-wrapper {
         width: 100%;
-        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -475,8 +474,8 @@ footer {
     /* 控制區域 */
     .control-section {
         width: 100%;
-        position: relative;
-        z-index: 10;
+        order: -1;  /* 移動到最前面 */
+        margin-bottom: 20px;
     }
 
     /* 按鈕組置中 */
@@ -485,7 +484,6 @@ footer {
         padding: 0 20px;
         display: flex;
         justify-content: space-between;
-        margin-bottom: 30px;
     }
 
     /* 按鈕樣式 */
