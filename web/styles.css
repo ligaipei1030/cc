@@ -552,11 +552,16 @@ footer {
         align-items: center;
     }
 
+    /* Logo */
+    .logo {
+        margin-bottom: 15px;
+    }
+
     /* 標題區域 */
     header {
         width: 100%;
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 15px;  /* 減少與按鈕的間距 */
     }
 
     /* 主標題 */
@@ -564,33 +569,33 @@ footer {
         font-size: 28px;
         font-weight: 700;
         color: #333;
-        margin-bottom: 10px;
+        margin-bottom: 5px;  /* 減少與副標題的間距 */
     }
 
     /* 副標題 */
     .subtitle {
         font-size: 16px;
         color: #666;
-        margin-bottom: 30px;  /* 增加與按鈕的間距 */
+        margin-bottom: 15px;  /* 減少與按鈕的間距 */
     }
 
     /* 按鈕區域 */
     .control-section {
         width: 100%;
-        margin-bottom: 30px;  /* 增加與相機區域的間距 */
+        margin-bottom: 15px;  /* 減少與相機區域的間距 */
     }
 
     /* 按鈕組 */
     .btn-group {
         display: flex;
         justify-content: center;
-        gap: 20px;  /* 增加按鈕間距 */
+        gap: 15px;  /* 調整按鈕間距 */
     }
 
     /* 按鈕樣式 */
     .btn {
-        width: 140px;  /* 稍微縮小按鈕寬度 */
-        padding: 12px 0;
+        width: 130px;  /* 調整按鈕寬度 */
+        padding: 10px 0;
         border-radius: 8px;
         font-size: 16px;
         text-align: center;
@@ -604,6 +609,7 @@ footer {
     .camera-section {
         width: 100%;
         padding: 0;
+        margin-top: -10px;  /* 稍微往上移動 */
     }
 
     /* 相機容器 */
