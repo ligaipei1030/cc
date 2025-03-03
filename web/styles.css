@@ -596,9 +596,10 @@ footer {
     /* 按鈕區域 */
     .control-section {
         width: 100%;
-        max-width: 500px;  /* 與相機區域相同的最大寬度 */
+        max-width: 500px;
         padding: 0;
         margin-bottom: 20px;
+        position: relative;  /* 為絕對定位提供參考 */
     }
 
     /* 按鈕組 */
@@ -606,14 +607,14 @@ footer {
         width: 100%;
         display: flex;
         justify-content: center;
-        gap: 20px;
-        padding: 0 20px;  /* 保持按鈕的內邊距 */
+        gap: 4px;  /* 減小按鈕間距為4px */
+        padding: 0;
+        position: relative;  /* 為絕對定位提供參考 */
     }
 
     /* 按鈕樣式 */
     .btn {
-        flex: 1;
-        max-width: 160px;
+        width: 160px;  /* 固定寬度 */
         padding: 12px 0;
         border-radius: 8px;
         font-size: 16px;
@@ -622,6 +623,17 @@ footer {
         color: white;
         border: none;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        position: relative;  /* 啟用相對定位 */
+    }
+
+    /* 左側按鈕位置調整 */
+    .btn.symptom-btn {
+        transform: translateX(-2px);  /* 向左移動2px */
+    }
+
+    /* 右側按鈕位置調整 */
+    .btn.meridian-btn {
+        transform: translateX(2px);  /* 向右移動2px */
     }
 }
 
