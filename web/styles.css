@@ -576,8 +576,8 @@ footer {
 
     /* 按鈕區域 */
     .control-section {
-        position: relative;
-        top: 180px;  /* 調整頂部位置 */
+        position: absolute;
+        top: 140px;  /* 調整頂部位置 */
         left: 50%;   /* 置中對齊 */
         transform: translateX(-50%);  /* 水平置中 */
         width: 100%;
@@ -609,7 +609,7 @@ footer {
     .camera-section {
         width: 100%;
         padding: 0 20px;
-        margin-top: 40px;  /* 為按鈕留出空間 */
+        margin-top: 80px;  /* 為按鈕留出空間 */
     }
 
     /* 相機容器 */
