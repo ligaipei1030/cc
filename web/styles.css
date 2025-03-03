@@ -437,8 +437,9 @@ footer {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 20px;
         background: white;
+        padding: 20px;
+        position: relative;
     }
 
     /* 標題區域 */
@@ -446,7 +447,8 @@ footer {
         width: 100%;
         text-align: center;
         padding: 20px 0;
-        position: relative;  /* 為按鈕提供定位參考 */
+        background: white;
+        position: relative;
     }
 
     /* 主要標題 */
@@ -460,19 +462,28 @@ footer {
     .subtitle {
         font-size: 16px;
         color: #666;
-        margin-bottom: 60px;  /* 為按鈕留出空間 */
+        margin-bottom: 20px;
+    }
+
+    /* 主要內容區域 */
+    main {
+        width: 100%;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     /* 按鈕組置中 */
     .btn-group {
         position: absolute;
-        top: -30px;  /* 位於標題區域底部 */
+        top: 120px;  /* 調整到標題下方 */
         left: 5%;
-        transform: translateX(-50%);
         display: flex;
         flex-direction: column;
         gap: 15px;
-        width: auto;  /* 移除寬度限制 */
+        width: auto;
+        z-index: 10;
     }
 
     /* 按鈕樣式 */
@@ -486,8 +497,6 @@ footer {
         color: white;
         border: none;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        cursor: pointer;
-        transition: background 0.3s;
     }
 
     /* 相機區域 */
@@ -495,7 +504,8 @@ footer {
         width: 100%;
         display: flex;
         justify-content: center;
-        margin-top: 20px;  /* 與按鈕的間距 */
+        background: white;
+        margin-top: 60px;  /* 為按鈕留出空間 */
     }
 
     /* 相機容器 */
